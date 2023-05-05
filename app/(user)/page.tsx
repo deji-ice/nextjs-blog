@@ -1,10 +1,8 @@
-import Image from 'next/image'
-
+import { previewData } from "next/headers";
 
 export default function Home() {
-  return (
-<div>
-
-</div>
-  )
+  if (previewData()) {
+    return <div>Preview Mode</div>;
+  }
+  return <div>Not in Preview Mode</div>;
 }
