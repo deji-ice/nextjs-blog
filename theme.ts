@@ -10,7 +10,6 @@ const props = {
     "--my-yellow":"#f4b400",
     "--my-green":"#0f9d58",
 }
-
 export const myTheme = buildLegacyTheme({
     '--black': props["--my-black"],
     '--white': props["--my-white"] ,
