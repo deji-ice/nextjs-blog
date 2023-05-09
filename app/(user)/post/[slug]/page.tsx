@@ -66,7 +66,7 @@ const page = async ({ params: { slug } }: Props) => {
                   <p
                     key={category._id}
                     className="bg-black text-center
-                     text-white mt-4 px-3 py-1 rounded-full text-sm font-semibold"
+                     text-white mt-4 px-3 py-1 rounded-full  font-semibold"
                   >
                     {category.title}
                   </p>

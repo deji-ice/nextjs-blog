@@ -20,7 +20,7 @@ export const RichTextComponent = {
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="ml-10 py-5 list-desc space-y-5">{children}</ul>
+      <ul className="ml-10 py-5 list-disc space-y-5">{children}</ul>
     ),
     number: ({ children }: any) => (
       <ol className="mt-lg list-decimal">{children}</ol>
@@ -48,7 +48,7 @@ export const RichTextComponent = {
       const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
       return (
        <Link 
-       className="underline decoration-violet-950"
+       className="text-blue-500 font-semibold"
        rel={rel}
        href={value.href}>
        {children}
