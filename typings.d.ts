@@ -11,7 +11,7 @@ interface Post extends Base {
     author: Author,
     title: string,
     body: Block[],
-    categories: Catergory[],
+    categories: Category[],
     mainImage: Image,
     description: string,
     slug: Slug
@@ -55,7 +55,7 @@ interface Span {
     text: string
 }
 
-interface Catergory extends Base {
+interface Category extends Base {
     title: string,
     description: string
 }
