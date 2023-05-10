@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import logo from "@assets/LOGO.png";
 
 
 
@@ -9,7 +9,7 @@ const Logo = (props:any) => {
   return <div className="flex items-center space-x-2">
     <Image
     className="rounded-full object-cover"
-    src={"https://links.papareact.com/1m8"}
+    src={logo}
     height={50}
     width={50}
     alt="" />

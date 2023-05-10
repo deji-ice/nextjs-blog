@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import logo from "@assets/LOGO.png";
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
         <Link href={"/"}>
           <Image
             className="rounded-full object-cover"
-            src={"https://links.papareact.com/1m8"}
+            src={logo}
             height={50}
             width={50}
             alt="logo"
