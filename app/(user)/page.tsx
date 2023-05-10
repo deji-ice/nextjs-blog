@@ -13,6 +13,8 @@ const query = groq`
   } | order(_createdAt, desc)
 `;
 
+export const revalidate = 60; //revalidate page every 60 secs
+
 export default async function Home() {
   if (previewData()) {
     return (
