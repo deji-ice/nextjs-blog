@@ -44,7 +44,6 @@ const page = async ({ params: { slug } }: Props) => {
     <article className="pb-28 px-10">
       {post && (
         <>
-          {" "}
           <section className="space-y-2 border border-blue-900 text-white">
             <div className="relative min-h-56 flex flex-col md:flex-row justify-between">
               <div className="absolute top-0 w-full h-full blur-sm opacity-10   p-10">
