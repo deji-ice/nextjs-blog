@@ -5,7 +5,7 @@ const Banner = () => {
     <div>
 <h1 className="text-5xl lg:7xl">The Curiosity Chronicles</h1>
 <h2 className="mt-5 lg:mt-2">
-  welcome to {" "} <span className="underline decoration-4 decoration-yellow-400">Every developers</span> {" "} favorite blog
+  welcome to {" "} <span className="underline decoration-4 decoration-black">Every developers</span> {" "} favorite blog
 </h2>
     </div>
     <p className="mt-5 text-gray-400 max-w-sm">
