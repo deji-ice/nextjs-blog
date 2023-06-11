@@ -57,7 +57,7 @@ const page = async ({ params: { slug } }: Props) => {
                 )}
               </div>
 
-              <section className="bg-blue-900 w-full p-5">
+              <section className="bg-blue-900 w-full p-5 ">
                 <div className="flex flex-col md:flex-row justify-between gap-y-5">
                   <div>
                     <h1 className="text-4xl font-extrabold">{post.title}</h1>
@@ -100,7 +100,10 @@ const page = async ({ params: { slug } }: Props) => {
               </section>
             </div>
           </section>
+          <section className=" md:px-10 xl:px-28">
           <PortableText value={post.body} components={RichTextComponent} />
+          </section>
+    
         </>
       )}
     </article>
