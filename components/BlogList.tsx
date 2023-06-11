@@ -8,12 +8,16 @@ type Props = {
 };
 
 const BlogList = ({ posts }: Props) => {
+
+  // Sort the posts by the _createdAt field in descending order
+  const sortedPosts = posts.sort((a, b) => new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime());
+
   return (
     <div>
       <hr className="border-[#1d1b97] mb-10" />
       <div className="grid grid-cols-1 md:grid-cols-2 px-10 gap-10 pb-24 gap-y-16">
         {/* all the posts */}
-        {posts.map((post) => (
+        {sortedPosts.map((post) => (
           <ClientSideRoute route={`/post/${post.slug.current}`} key={post._id}>
             <div className="group cursor-pointer flex flex-col">
               <div className="relative w-full h-80 group-hover:scale-105 drop-shadow-xl transition-transform duration-200 ease-out">
