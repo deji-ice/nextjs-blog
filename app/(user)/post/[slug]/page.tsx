@@ -22,11 +22,11 @@ slug
 
   const slugs: Post[] = await client.fetch(query);
 
- let slugRoutes = slugs.map((slug) => slug.slug.current)
+  let slugRoutes = slugs.map((slug) => slug.slug.current);
 
- return slugRoutes.map((slug)=>({
-  slug
- }))
+  return slugRoutes.map((slug) => ({
+    slug,
+  }));
 };
 
 const page = async ({ params: { slug } }: Props) => {
@@ -74,25 +74,25 @@ const page = async ({ params: { slug } }: Props) => {
                       className="rounded-full"
                       src={urlFor(post.author.image).url()}
                       alt={post.author.name}
-                      height={40}
-                      width={40}
+                      height={20}
+                      width={20}
                     />
-                    <div className="w-64 text-lg font-bold">
-                      <h3>{post.author.name}</h3>
+                    <div className="w-64 text-sm  ">
+                      <h3>By {post.author.name}</h3>
                       <div>{/* TODO bio */}</div>
                     </div>
                   </div>
                 </div>
                 <div>
                   <h2 className="pt-10 italic ">{post.description}</h2>
-                  <div className="flex items-center justify-end mt-auto space-x-2">
+                  <div className="flex items-center justify-end mt-auto ">
                     {post.categories.map((category) => (
                       <p
                         key={category._id}
-                        className="bg-black text-center
-                     text-white mt-4 px-3 py-1 rounded-full  font-semibold"
+                        className="text-center
+                     text-white mt-4 px-1 py-1 rounded-full  font-semibold"
                       >
-                        {category.title}
+                        {category.title} |
                       </p>
                     ))}
                   </div>
@@ -101,14 +101,12 @@ const page = async ({ params: { slug } }: Props) => {
             </div>
           </section>
           <section className=" md:px-10 xl:px-28">
-          <PortableText value={post.body} components={RichTextComponent} />
+            <PortableText value={post.body} components={RichTextComponent} />
           </section>
-    
         </>
       )}
     </article>
   );
 };
-
 
 export default page;

@@ -17,6 +17,7 @@ export default function RootLayout({
       <head />
 
       <body className="mx-auto max-w-7xl ">
+        <p className="w-full bg-black text-white text-center text-xs fixed z-30 p-1 md:text-sm">The website is currently undergoing reconstruction and will be back soon with an enhanced user experience 🚧 👷 </p>
         <Header />
         <Banner/>
         {children}
