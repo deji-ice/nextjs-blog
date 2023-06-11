@@ -14,13 +14,13 @@ const BlogList = ({ posts }: Props) => {
 
   return (
     <div>
-      <hr className="border-[#1d1b97] mb-10" />
+      <hr className="border-[#0c0b68] mb-10" />
       <div className="grid grid-cols-1 md:grid-cols-2 px-10 gap-10 pb-24 gap-y-16">
         {/* all the posts */}
         {sortedPosts.map((post) => (
           <ClientSideRoute route={`/post/${post.slug.current}`} key={post._id}>
             <div className="group cursor-pointer flex flex-col">
-              <div className="relative w-full h-80 group-hover:scale-105 drop-shadow-xl transition-transform duration-200 ease-out">
+              <div className="relative w-full h-80 group-hover:scale-105  drop-shadow-xl transition-transform duration-200 ease-out">
                 <Image
                   className="object-cover object-left lg:object-center"
                   src={urlFor(post.mainImage).url()}
@@ -46,9 +46,9 @@ const BlogList = ({ posts }: Props) => {
                       <div
                         key={category._id}
                         className="bg-[#f7ab0a] text-center text-black
-                            px-3 py-1 rounded-full text-sm font-semibold"
+                            md:px-3 py-1 rounded-full md:text-sm text-xs px-2  font-semibold"
                       >
-                        <p>{category.title}</p>
+                        <p className="">{category.title}</p>
                       </div>
                     ))}
                   </div>
@@ -56,7 +56,7 @@ const BlogList = ({ posts }: Props) => {
               </div>
               <div className="mt-5 flex-1">
                 <p className="underline text-lg font-bold">{post.title}</p>
-                <p className="text-gray-500">{post.description} </p>
+                <p className="lg:text-sm text-xs">{post.description} </p>
               </div>
               <p className="flex mt-5 font-bold items-center group-hover:underline">
                 Read More <ArrowUpRightIcon className="h-4 w-4 ml-2" />
