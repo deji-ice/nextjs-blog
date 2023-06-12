@@ -21,7 +21,7 @@ export const RichTextComponent = {
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="pl-10 text-lg md:ml-10 py-5 list-disc space-y-5">{children}</ul>
+      <ul className="pl-10 text-lg md:pl-6 md:pr-2 md:ml-2 py-5 list-disc space-y-5">{children}</ul>
     ),
     number: ({ children }: any) => (
       <ol className="mt-lg text-lg list-decimal">{children}</ol>
@@ -41,10 +41,10 @@ export const RichTextComponent = {
       <h4 className="text-4xl py-2 font-bold">{children}</h4>
     ),
     normal: ({ children }: any) => (
-      <p className="text-lg py-3 ">{children}</p>
+      <p className="text-lg py-3 md:text-xl ">{children}</p>
     ),
     blockquote: ({ children }: any) => (
-        <blockquote className="border-l-[blue]  italic font-medium border-l-4 pl-5 my-5 bg-zinc-100 py-5">{children}</blockquote>
+        <blockquote className="border-l-[blue]  italic font-medium md:text-lg border-l-4 pl-5 my-5 bg-zinc-100 py-5">{children}</blockquote>
       ),
     
       

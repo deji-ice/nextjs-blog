@@ -41,10 +41,10 @@ const page = async ({ params: { slug } }: Props) => {
   const post: Post = await client.fetch(query, { slug: slug });
 
   return (
-    <article className="pb-28 px-5 text-slate-800">
+    <article className="pb-28 px-5 xl:w-screen flex flex-col items-center mt-10  text-slate-800">
       {post && (
         <>
-          <section className="space-y-2 border border-gray-500 w-full mb-5">
+          <section className="space-y-2 border border-gray-500 xl:px-20 mb-5">
             <div className="relative min-h-56 flex flex-col md:flex-row justify-center">
               {/* <div className="absolute top-0 w-full h-full blur-sm opacity-10   p-10">
                 {post && post.mainImage && (
@@ -57,11 +57,11 @@ const page = async ({ params: { slug } }: Props) => {
                 )}
               </div> */}
 
-              <section className="max-w-4xl  space-y-5 ">
-                <div className="flex md:flex-row justify-center hyphens-auto ">
-                    <h1 className="text-4xl text-left p-3 font-bold hyphens-auto">{post.title}</h1>
+              <section className="max-w-4xl  space-y-5 md:p-2 xl:space-y-10 lg:pb-5">
+                <div className="flex md:flex-row justify-center hyphens-auto lg:pt-6  xl:pt-10 ">
+                    <h1 className="text-4xl xl:text-6xl text-left p-3 md:text-center md:px-5 md:text-5xl font-bold hyphens-auto">{post.title}</h1>
                 </div>
-                <div className="flex flex-col text-sm  text-gray-700 font-semibold items-center mb-2 justify-center">
+                <div className="flex flex-col text-sm lg:text-lg text-gray-700 font-semibold items-center mb-2 justify-center">
                   <div className="flex flex-row items-center justify-between space-x-5">
                   <div className="flex flex-row items-center space-x-2">
                     <Image
@@ -84,12 +84,12 @@ const page = async ({ params: { slug } }: Props) => {
                       })}
                     </p>
                     </div>
-                  <div className="flex items-center  mt-auto ">
+                  <div className="flex items-center lg:space-x-0  mt-auto ">
                     {post.categories.map((category) => (
                       <p
                         key={category._id}
                         className="text-center
-                      px-1 py-1 rounded-full "
+                      px-1 py-1 "
                       >
                         <span  className="text-blue-600 ">#</span>{category.title}
                       </p>
