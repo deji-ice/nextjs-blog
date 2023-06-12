@@ -32,7 +32,7 @@ const Header = () => {
           <span className="relative">Newsletter 🚀 </span>
         </Link>
         <p className="mt-5 lg:mt-8 text-gray-400 text-xs hyphens-auto lg:text-lg max-w-[15rem] lg:text-right lg:max-w-[21rem]">
-          New products | The latest fashion trends | more and more!
+          New products | Tech solutions | more and more!
         </p>
       </div>
     </header>
