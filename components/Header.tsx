@@ -4,7 +4,7 @@ import logo from "../assets/LOGO.png";
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center space-x-2 font-bold px-10 py-5">
+    <header className="flex justify-between items-center mt-8 font-bold px-5 py-5">
       <div className="flex items-start space-x-2">
         <Link href={"/"}>
           <Image

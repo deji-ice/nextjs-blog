@@ -41,12 +41,12 @@ const page = async ({ params: { slug } }: Props) => {
   const post: Post = await client.fetch(query, { slug: slug });
 
   return (
-    <article className="pb-28 px-10">
+    <article className="pb-28 px-5 text-slate-800">
       {post && (
         <>
-          <section className="space-y-2 border border-blue-900 text-white">
-            <div className="relative min-h-56 flex flex-col md:flex-row justify-between">
-              <div className="absolute top-0 w-full h-full blur-sm opacity-10   p-10">
+          <section className="space-y-2 border border-gray-500 w-full mb-5">
+            <div className="relative min-h-56 flex flex-col md:flex-row justify-center">
+              {/* <div className="absolute top-0 w-full h-full blur-sm opacity-10   p-10">
                 {post && post.mainImage && (
                   <Image
                     className="object-cover mx-auto object-center "
@@ -55,44 +55,43 @@ const page = async ({ params: { slug } }: Props) => {
                     fill
                   />
                 )}
-              </div>
+              </div> */}
 
-              <section className="bg-blue-900 w-full p-5 ">
-                <div className="flex flex-col md:flex-row justify-between gap-y-5">
-                  <div>
-                    <h1 className="text-4xl font-extrabold">{post.title}</h1>
-                    <p className="">
+              <section className="max-w-4xl  space-y-5 ">
+                <div className="flex md:flex-row justify-center hyphens-auto ">
+                    <h1 className="text-4xl text-left p-3 font-bold hyphens-auto">{post.title}</h1>
+                </div>
+                <div className="flex flex-col text-sm  text-gray-700 font-semibold items-center mb-2 justify-center">
+                  <div className="flex flex-row items-center justify-between space-x-5">
+                  <div className="flex flex-row items-center space-x-2">
+                    <Image
+                      className="rounded-full"
+                      src={urlFor(post.author.image).url()}
+                      alt={post.author.name}
+                      height={10}
+                      width={20}
+                    />
+                    <div className=" ">
+                      <h3>By {post.author.name}</h3>
+                      <div>{/* TODO bio */}</div>
+                    </div>
+                  </div>
+                  <p className="">
                       {new Date(post._createdAt).toLocaleDateString("en-US", {
                         day: "numeric",
                         month: "long",
                         year: "numeric",
                       })}
                     </p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Image
-                      className="rounded-full"
-                      src={urlFor(post.author.image).url()}
-                      alt={post.author.name}
-                      height={20}
-                      width={20}
-                    />
-                    <div className="w-64 text-sm  ">
-                      <h3>By {post.author.name}</h3>
-                      <div>{/* TODO bio */}</div>
                     </div>
-                  </div>
-                </div>
-                <div>
-                  <h2 className="pt-10 italic ">{post.description}</h2>
-                  <div className="flex items-center justify-end mt-auto ">
+                  <div className="flex items-center  mt-auto ">
                     {post.categories.map((category) => (
                       <p
                         key={category._id}
                         className="text-center
-                     text-white mt-4 px-1 py-1 rounded-full  font-semibold"
+                      px-1 py-1 rounded-full "
                       >
-                        {category.title} |
+                        <span  className="text-blue-600 ">#</span>{category.title}
                       </p>
                     ))}
                   </div>
@@ -100,7 +99,7 @@ const page = async ({ params: { slug } }: Props) => {
               </section>
             </div>
           </section>
-          <section className=" md:px-10 xl:px-28">
+          <section className="mt-10 md:px-10 xl:px-28">
             <PortableText value={post.body} components={RichTextComponent} />
           </section>
         </>
