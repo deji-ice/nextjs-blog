@@ -3,6 +3,7 @@ import {deskTool} from 'sanity/desk'
 import { visionTool } from '@sanity/vision'
 import {schemaTypes} from './schemas'
 import { myTheme } from './theme';
+import {codeInput} from '@sanity/code-input'
 import StudioNavbar from './components/StudioNavbar';
 import Logo from './components/Logo';
 import { getDefaultDocumentNode } from './util/structure';
@@ -18,7 +19,7 @@ export default defineConfig({
   dataset,
   plugins: [deskTool({
     defaultDocumentNode: getDefaultDocumentNode
-  }), visionTool()], 
+  }), visionTool(),], 
   schema: {
     types: schemaTypes,
   },

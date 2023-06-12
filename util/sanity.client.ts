@@ -8,5 +8,5 @@ export const client = createClient({
     projectId,
     dataset,
     apiVersion,
-    useCdn: false //true if using vercel or moving tp production
+    useCdn: true //true if using vercel or moving tp production
 })
