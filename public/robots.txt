@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://curiositychronicles.vercel.app/
+
+# Sitemaps
+Sitemap: https://curiositychronicles.vercel.app/sitemap.xml
