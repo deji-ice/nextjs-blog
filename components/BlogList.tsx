@@ -10,7 +10,7 @@ type Props = {
 const BlogList = ({ posts }: Props) => {
 
   // Sort the posts by the _createdAt field in descending order
-  const sortedPosts = posts.sort((a, b) => new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime());
+   const sortedPosts = posts.sort((a, b) => new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime());
 
   return (
     <div>
