@@ -10,7 +10,7 @@ const Header = () => {
         <Link href={"/"}>
           <h1 className="hover:cursor-pointer text-2xl leading-6 md:text-4xl text-slate-800 lg:text-6xl">
             <span className="text-lg md:text-2xl lg:text-4xl">The</span>
-            <br /> Curiosity <br /> Chronicles
+            <br /> Code <br /> Chronicles
           </h1>
           </Link>
           <h2 className="mt-2 text-xs lg:mt-2 lg:text-lg">
