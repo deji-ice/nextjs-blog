@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://curiositychronicles.vercel.app/
+Host: https://thecodechronicles.vercel.app/
 
 # Sitemaps
-Sitemap: https://curiositychronicles.vercel.app/sitemap.xml
+Sitemap: https://thecodechronicles.vercel.app/sitemap.xml
