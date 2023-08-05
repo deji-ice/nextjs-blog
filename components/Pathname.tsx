@@ -12,9 +12,9 @@ const Pathname = (props: Props) => {
   const pathname = usePathname();
   const newPathname = pathname ? formatPathname(pathname) : ""
   return (
-    <p className="flex font-medium space-x-2 md:space-x-1">
+    <p className="flex md:items-center text-xs md:text-base px-5 font-medium space-x-1 md:space-x-1 ">
       <Link href={"/"}>
-        <HomeIcon className="w-5 text-gray-500 hover:text-inherit" />
+        <HomeIcon className="w-4 md:w-5 text-gray-500 hover:text-inherit" />
       </Link>
       <span>/</span>
       <Link className="font-bold" href={`${pathname}`}>
