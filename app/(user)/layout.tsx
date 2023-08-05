@@ -15,7 +15,7 @@ export default function RootLayout({
       */}
 
       <Head />
-      <body className="bg-[#FAF9F6] max-w-7xl ">
+      <body className="bg-[#FAF9F6] overflow-x-clip ">
         {/* <p className="w-full bg-slate-700 text-white text-center text-xs fixed z-30 p-1 top-0 md:text-sm">
           The website is currently undergoing reconstruction and will be back
           soon with an enhanced user experience 🚧 👷{" "}
