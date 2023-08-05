@@ -4,7 +4,7 @@ import logo from "../assets/LOGO.png";
 
 const Header = () => {
   return (
-    <header className="flex justify-between space-x-16 xl:w-screen xl:px-20  items-center mt-8 xl:mt-3 font-bold px-5 md:px-10  py-5">
+    <header className="flex justify-between space-x-16 xl:w-screen xl:px-20  items-center mt-8 xl:mt-0 mb-5 font-bold px-5 md:px-10  py-5">
       <div className="flex flex-col items-start ">
         <Link href={"/"}>
           <h1 className="hover:cursor-pointer text-2xl leading-6 md:text-4xl text-slate-800 lg:text-5xl">
