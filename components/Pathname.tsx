@@ -14,10 +14,10 @@ const Pathname = (props: Props) => {
   return (
     <p className="flex font-medium space-x-2 md:space-x-1">
       <Link href={"/"}>
-        <HomeIcon className="w-5 text-gray-500" />
+        <HomeIcon className="w-5 text-gray-500 hover:text-inherit" />
       </Link>
       <span>/</span>
-      <Link className="" href={`${pathname}`}>
+      <Link className="font-bold" href={`${pathname}`}>
         {newPathname}
       </Link>
     </p>
