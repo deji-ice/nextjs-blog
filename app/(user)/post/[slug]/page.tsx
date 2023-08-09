@@ -4,10 +4,8 @@ import { groq } from "next-sanity";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { RichTextComponent } from "@/components/RichTextComponent";
-import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
-import { useRouter } from "next/router";
 import Pathname from "@/components/Pathname";
-
+import { ShareIcon } from "@heroicons/react/24/solid";
 type Props = {
   params: {
     slug: string;
@@ -44,18 +42,18 @@ const page = async ({ params: { slug } }: Props) => {
   const post: Post = await client.fetch(query, { slug: slug });
 
   return (
-    <div className="relative">  
-      <div className="absolute left-0 lg:left-36 top-[-40px]  ">
+    <div className="relative ">  
+      <div className=" mt-5 sticky top-0 ml-10 bg-[#FAF9F6] z-30 p-3  ">
         <Pathname />
       </div>
-      <article className=" relative pb-28 px-5 xl:w-screen flex flex-col items-center mt-12  text-slate-800">
+      <article className=" relative pb-28 px-5 xl:w-screen flex flex-col items-center mt-8  text-slate-800">
         {post && (
           <>
           
             <section className=" space-y-2 border border-gray-500  mb-5">
               
               <div className="relative min-h-56 flex w-full flex-col md:flex-row justify-center">
-              <div className="absolute top-0 w-full h-full blur-sm opacity-70 z-0 ">
+              <div className="absolute top-0 w-full h-full blur-xs opacity-80 z-0 ">
                 {post && post.mainImage && (
                   <Image
                     className="object-fill w-full object-center "
