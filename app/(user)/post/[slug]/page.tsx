@@ -6,6 +6,7 @@ import { PortableText } from "@portabletext/react";
 import { RichTextComponent } from "@/components/RichTextComponent";
 import Pathname from "@/components/Pathname";
 import { ShareIcon } from "@heroicons/react/24/solid";
+import Share from "@/components/Share";
 type Props = {
   params: {
     slug: string;
@@ -42,28 +43,26 @@ const page = async ({ params: { slug } }: Props) => {
   const post: Post = await client.fetch(query, { slug: slug });
 
   return (
-    <div className="relative ">  
+    <div className="relative ">
       <div className="mt-1 md:mt-0 sticky flex justify-between top-0 p-5 xl:mx-10 md:pl-10 bg-[#FAF9F6]  z-30  md:py-5  ">
         <Pathname />
-        <ShareIcon className="w-5 md:w-6 md:mr-3 lg:mr-6 xl:mr-16 hover:cursor"/>
+        <Share classNames="w-5 md:w-6 md:mr-3 lg:mr-6 xl:mr-16" />
       </div>
       <article className=" relative pb-28 px-5 xl:w-screen flex flex-col items-center mt-8  text-slate-800">
         {post && (
           <>
-          
             <section className=" space-y-2 border border-gray-500  mb-5">
-              
               <div className="relative min-h-56 flex w-full flex-col md:flex-row justify-center">
-              <div className="absolute top-0 w-full h-full blur-xs opacity-80 z-0 ">
-                {post && post.mainImage && (
-                  <Image
-                    className="object-fill w-full object-center "
-                    src={urlFor(post.mainImage).url()}
-                    alt={post.author.name}
-                    fill
-                  />
-                )}
-              </div>
+                <div className="absolute top-0 w-full h-full blur-xs opacity-80 z-0 ">
+                  {post && post.mainImage && (
+                    <Image
+                      className="object-fill w-full object-center "
+                      src={urlFor(post.mainImage).url()}
+                      alt={post.author.name}
+                      fill
+                    />
+                  )}
+                </div>
                 <section className="max-w-4xl z-20 text-white space-y-5 md:p-2 xl:space-y-10 lg:pb-5">
                   <div className="flex md:flex-row justify-center hyphens-auto lg:pt-6  xl:pt-10 ">
                     <h1 className="text-4xl xl:text-6xl text-left p-5 md:p-3 md:text-center md:px-10 md:text-5xl font-bold hyphens-auto">
@@ -80,7 +79,7 @@ const page = async ({ params: { slug } }: Props) => {
                           height={30}
                           width={30}
                         />
-                        <div >
+                        <div>
                           <h3>By {post.author.name}</h3>
                           <div>{/* TODO bio */}</div>
                         </div>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../assets/LOGO.png";
 import { MagnifyingGlassIcon, ShareIcon } from "@heroicons/react/24/solid";
+import Share from "./Share";
 const Header = () => {
   return (
     <header
@@ -10,7 +11,7 @@ const Header = () => {
     >
       <div className="md:flex hidden flex-5 gap-5 xl:gap-8">
         <MagnifyingGlassIcon className="w-5 xl:w-6 text-white hover:cursor-pointer" />
-        <ShareIcon className="w-5 xl:w-6 text-white hover:cursor-pointer" />
+        <Share classNames="w-5 xl:w-6 text-white"/>
       </div>
 
       <Link
