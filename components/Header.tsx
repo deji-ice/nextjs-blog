@@ -65,7 +65,7 @@ const Header = () => {
         </div>
         <div className="flex md:hidden justify-center  flex-5 gap-5">
           <MagnifyingGlassIcon className="w-5 text-white hover:cursor-pointer" />
-          <ShareIcon className="w-5 text-white hover:cursor-pointer" />
+          <Share classNames="w-5 text-white" />
         </div>
       </div>
     </header>
