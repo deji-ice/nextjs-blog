@@ -46,7 +46,7 @@ const page = async ({ params: { slug } }: Props) => {
     <div className="relative ">
       <div className="mt-1 md:mt-0 sticky flex justify-between top-0 p-5 xl:mx-10 md:pl-10 bg-[#FAF9F6]  z-30  md:py-5  ">
         <Pathname />
-        <Share classNames="w-5 md:w-6 md:mr-3 lg:mr-6 xl:mr-16" />
+        <Share classNames="w-5 md:w-6 mr-5 md:mr-3 lg:mr-6 xl:mr-16" />
       </div>
       <article className=" relative pb-28 px-5 xl:w-screen flex flex-col items-center mt-8  text-slate-800">
         {post && (

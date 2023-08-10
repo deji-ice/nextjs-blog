@@ -33,7 +33,7 @@ const Share = ({ classNames }: Props) => {
             exit={{ opacity: 0, y: -10 }} // Add exit animation
             transition={{ duration: 0.5, delay: 0.1 }}
             className={`mt-2 rounded-b-full rounded-t-3xl absolute flex flex-col items-center justify-center gap-3 
-            right-[-30px] w-fit left-0 p-2 bg-[#FAF9F6] top-6 z-50 drop-shadow-md `}
+            right-[-20rem] mr-5 w-fit left-0 p-1 pb-2 bg-[#FAF9F6] top-6 z-50 drop-shadow-md `}
           >
             <motion.div
               initial={{ opacity: 0 }}
