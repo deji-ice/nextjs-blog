@@ -4,17 +4,39 @@ import React, { useState } from "react";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { motion, AnimatePresence } from "framer-motion"; // Import AnimatePresence
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 type Props = {
   classNames: string;
 };
 
 const Share = ({ classNames }: Props) => {
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const pathname = usePathname();
 
-  const handleClick = () => {
-    setShow((prev) => !prev);
+  const handleClick = () => setShow((prev) => !prev);
+
+  const handleCopy = async () => {
+    try {
+      const fullURL = `${window.location.origin}${pathname}`;
+      await navigator.clipboard.writeText(fullURL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
+  const handleFacebookShare = () => {
+    const fullURL = `${window.location.origin}${pathname}`;
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullURL)}`, "_blank");
+  };
+
+  const handleTwitterShare = () => {
+    const fullURL = `${window.location.origin}${pathname}`;
+    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(fullURL)}`, "_blank");
   };
 
   return (
@@ -24,47 +46,29 @@ const Share = ({ classNames }: Props) => {
         onClick={handleClick}
       />
       <AnimatePresence>
-        {" "}
-        {/* Use AnimatePresence */}
         {show && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }} // Add exit animation
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className={`mt-2 rounded-b-full rounded-t-3xl absolute flex flex-col items-center justify-center gap-3 
-            right-[-20rem] mr-5 w-fit left-0 p-1 pb-2 bg-[#FAF9F6] top-6 z-50 drop-shadow-md `}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.18 }}
+            className="absolute right-2 mt-2 flex flex-col items-center gap-3 px-3 py-2 bg-[#FAF9F6] z-50 drop-shadow-md"
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ContentCopyIcon
-                onClick={handleClick}
-                className="w-5 hover:cursor-pointer"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
-            >
-              <FacebookIcon
-                onClick={handleClick}
-                className="w-5 hover:cursor-pointer"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <TwitterIcon
-                onClick={handleClick}
-                className="w-5 hover:cursor-pointer"
-              />
-            </motion.div>
+            {copied && (
+              <span className="text-xs text-black lg:text-white absolute z-[51] right-[-3rem]">Copied!</span>
+            )}
+            <ContentCopyIcon
+              onClick={handleCopy}
+              className="w-5 hover:cursor-pointer"
+            />
+            <FacebookIcon
+              onClick={handleFacebookShare}
+              className="w-5 hover:cursor-pointer"
+            />
+            <TwitterIcon
+              onClick={handleTwitterShare}
+              className="w-5 hover:cursor-pointer"
+            />
           </motion.div>
         )}
       </AnimatePresence>
