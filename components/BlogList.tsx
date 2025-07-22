@@ -19,7 +19,7 @@ const BlogList = ({ posts }: Props) => {
         {sortedPosts.map((post) => (
           <ClientSideRoute route={`/post/${post.slug.current}`} key={post._id}>
             <div className="group cursor-pointer flex flex-col">
-              <div className="relative w-full h-80 group-hover:scale-105  drop-shadow-xl transition-transform duration-200 ease-out">
+              <div className="relative w-full h-80  drop-shadow-xl transition-transform duration-200 ease-out">
                 <Image
                   className="object-cover object-left lg:object-center"
                   src={urlFor(post.mainImage).url()}

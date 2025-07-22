@@ -2,7 +2,7 @@ import urlFor from "@/util/urlFor";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
+import CodeBlock from "./CodeBlock";
 
 export const RichTextComponent = {
   types: {
@@ -18,19 +18,22 @@ export const RichTextComponent = {
         </div>
       );
     },
+    code: ({ value }: any) => {
+      return <CodeBlock language={value.language} code={value.code} />;
+    },
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="pl-10 text-lg md:pl-6 md:pr-2 md:ml-2 py-5 list-disc space-y-5">{children}</ul>
+      <ul className="pl-10 text-lg md:pl-6 md:pr-2 md:ml-2 py-5 list-disc space-y-5">
+        {children}
+      </ul>
     ),
     number: ({ children }: any) => (
       <ol className="mt-lg text-lg list-decimal">{children}</ol>
     ),
   },
   block: {
-    h1: ({ children }: any) => (
-      <h1 className="text-8xl py-3 ">{children}</h1>
-    ),
+    h1: ({ children }: any) => <h1 className="text-8xl py-3 ">{children}</h1>,
     h2: ({ children }: any) => (
       <h2 className="text-5xl py-2 font-bold leading-normal">{children}</h2>
     ),
@@ -44,22 +47,25 @@ export const RichTextComponent = {
       <p className="text-lg py-3 md:text-xl ">{children}</p>
     ),
     blockquote: ({ children }: any) => (
-        <blockquote className="border-l-[blue]  italic font-medium md:text-lg border-l-4 pl-5 my-5 bg-zinc-100 py-5">{children}</blockquote>
-      ),
-    
-      
+      <blockquote className="border-l-[blue]  italic font-medium md:text-lg border-l-4 pl-5 my-5 bg-zinc-100 py-5">
+        {children}
+      </blockquote>
+    ),
   },
   marks: {
-    link: ({children, value}: any) => {
-      const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
+    link: ({ children, value }: any) => {
+      const rel = !value.href.startsWith("/")
+        ? "noreferrer noopener"
+        : undefined;
       return (
-       <Link 
-       className="text-blue-500 font-semibold"
-       rel={rel}
-       href={value.href}>
-       {children}
-       </Link>
-      )
+        <Link
+          className="text-blue-500 font-semibold"
+          rel={rel}
+          href={value.href}
+        >
+          {children}
+        </Link>
+      );
     },
   },
 };
