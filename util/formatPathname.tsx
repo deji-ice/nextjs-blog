@@ -11,4 +11,10 @@ export const formatPathname = (pathname: string): string => {
   
     return capitalizedPathname;
   };
-  
+
+  export const slugify = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/[^\w]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
