@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import CodeBlock from "./CodeBlock";
+import { slugify } from "@/util/formatPathname";
 
 export const RichTextComponent = {
   types: {
@@ -11,7 +12,7 @@ export const RichTextComponent = {
         <div className="relative w-full h-96 my-5 justify-center">
           <Image
             src={urlFor(value).url()}
-            alt="Post Image"
+            alt={value.alt || "Post image"}
             fill
             className="object-contain"
           />
@@ -35,13 +36,13 @@ export const RichTextComponent = {
   block: {
     h1: ({ children }: any) => <h1 className="text-8xl py-3 ">{children}</h1>,
     h2: ({ children }: any) => (
-      <h2 className="text-5xl py-2 font-bold leading-normal">{children}</h2>
+      <h2 id={slugify(children[0])} className="text-5xl py-2 font-bold leading-normal">{children}</h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-4xl py-2 text-start font-bold">{children}</h3>
+      <h3 id={slugify(children[0])} className="text-4xl py-2 text-start font-bold">{children}</h3>
     ),
     h4: ({ children }: any) => (
-      <h4 className="text-4xl py-2 font-bold">{children}</h4>
+      <h4 id={slugify(children[0])} className="text-4xl py-2 font-bold">{children}</h4>
     ),
     normal: ({ children }: any) => (
       <p className="text-lg py-3 md:text-xl ">{children}</p>
