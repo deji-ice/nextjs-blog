@@ -10,8 +10,11 @@ export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaT
                 S.view
                     .component(Iframe)
                     .options({
-                        url: `${"http://localhost:3000/api/preview" || "thecodechronicles.vercel.app/api/preview"}`, 
-                        defaultSize: "desktop", 
+                        url:
+                            process.env.NODE_ENV === "development"
+                                ? "http://localhost:3000/api/preview"
+                                : "https://thecodechronicles.vercel.app/api/preview",
+                        defaultSize: "desktop",
                         reload: { button: true },
                         attributes: {}
                     })

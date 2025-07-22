@@ -19,7 +19,7 @@ export default defineConfig({
   dataset,
   plugins: [deskTool({
     defaultDocumentNode: getDefaultDocumentNode
-  }), visionTool(),], 
+  }), visionTool(),  codeInput()], 
   schema: {
     types: schemaTypes,
   },
