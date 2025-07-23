@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import "../globals.css";
-import Head from "../head";
 import { Lato } from "@next/font/google";
 import localFont from "@next/font/local";
 
@@ -20,7 +19,7 @@ const cabinetGrotesk = localFont({
     {
       path: "../../public/fonts/CabinetGrotesk-Medium.woff2",
       weight: "500",
-      style: "normal", 
+      style: "normal",
     },
     {
       path: "../../public/fonts/CabinetGrotesk-Thin.woff2",
@@ -37,6 +36,16 @@ const cabinetGrotesk = localFont({
   display: "swap",
 });
 
+export const metadata = {
+  title: "The Code Chronicles",
+  description: "Expand your mind and broaden your horizons...",
+  openGraph: {
+    title: "The Code Chronicles",
+    description: "Expand your mind...",
+    images: ["/LOGO.png"],
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -47,12 +56,6 @@ export default function RootLayout({
       lang="en"
       className={`${lato.variable} ${cabinetGrotesk.variable} antialiased`}
     >
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-
-      <Head />
       <body className="bg-[#FAF9F6] overflow-x-clip  font-body">
         {/* <p className="w-full bg-slate-700 text-white text-center text-xs fixed z-30 p-1 top-0 md:text-sm">
           The website is currently undergoing reconstruction and will be back
