@@ -25,34 +25,57 @@ export const RichTextComponent = {
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="pl-10 text-lg md:pl-6 md:pr-2 md:ml-2 py-5 list-disc space-y-5">
+      <ul className="ml-6 list-disc space-y-2 text-base md:text-lg py-4">
         {children}
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="mt-lg text-lg list-decimal">{children}</ol>
+      <ol className="ml-6 list-decimal space-y-2 text-base md:text-lg py-4">
+        {children}
+      </ol>
     ),
   },
+
   block: {
-    h1: ({ children }: any) => <h1 className="text-8xl py-3 ">{children}</h1>,
+    h1: ({ children }: any) => (
+      <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold py-4">
+        {children}
+      </h1>
+    ),
     h2: ({ children }: any) => (
-      <h2 id={slugify(children[0])} className="text-5xl py-2 font-bold leading-normal">{children}</h2>
+      <h2
+        id={slugify(children[0])}
+        className="text-2xl md:text-4xl lg:text-5xl font-bold py-3"
+      >
+        {children}
+      </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 id={slugify(children[0])} className="text-4xl py-2 text-start font-bold">{children}</h3>
+      <h3
+        id={slugify(children[0])}
+        className="text-xl md:text-3xl lg:text-4xl font-semibold py-3"
+      >
+        {children}
+      </h3>
     ),
     h4: ({ children }: any) => (
-      <h4 id={slugify(children[0])} className="text-4xl py-2 font-bold">{children}</h4>
+      <h4
+        id={slugify(children[0])}
+        className="text-lg md:text-2xl lg:text-3xl font-semibold py-2"
+      >
+        {children}
+      </h4>
     ),
     normal: ({ children }: any) => (
-      <p className="text-lg py-3 md:text-xl ">{children}</p>
+      <p className="text-base md:text-lg leading-relaxed py-3">{children}</p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-[blue]  italic font-medium md:text-lg border-l-4 pl-5 my-5 bg-zinc-100 py-5">
+      <blockquote className="border-l-4 border-blue-500 bg-gray-50 italic pl-4 md:pl-6 py-4 my-6">
         {children}
       </blockquote>
     ),
   },
+
   marks: {
     link: ({ children, value }: any) => {
       const rel = !value.href.startsWith("/")

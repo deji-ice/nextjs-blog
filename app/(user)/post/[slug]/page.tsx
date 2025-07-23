@@ -51,20 +51,20 @@ const page = async ({ params: { slug } }: Props) => {
   // console.log(post.body);
 
   return (
-    <div className="relative w-full px-4">
+    <div className="relative w-full lg:px-4">
       {/* <div className="mt-1 md:mt-0 sticky flex justify-between top-0 p-5 xl:mx-10 md:pl-10 bg-[#FAF9F6]  z-30  md:py-5  ">
         <Pathname />
         <Share classNames="w-5 md:w-6 mr-5 md:mr-3 lg:mr-6 xl:mr-16" />
       </div> */}
-      <section className=" relative pb-28  flex flex-col items-center   text-slate-800">
+      <section className=" relative pb-28  flex flex-col items-center  text-slate-800">
         {post && (
           <>
-            <section className=" space-y-2 w-full  mb-5">
+            <section className=" space-y-2 w-full">
               <div className="relative min-h-56 flex w-full flex-col md:flex-row justify-center">
                 <div className="w-full h-full  ">
                   {post && post.mainImage && (
                     <Image
-                      className="object-cover w-full h-[90vh] bg-blue-500 rounded-[2rem]  object-center "
+                      className="object-cover w-full h-[75vh] lg:h-[90vh] bg-blue-500 rounded-none rounded-b-3xl lg:rounded-b-none  lg:rounded-[2rem]  object-center "
                       src={urlFor(post.mainImage).url()}
                       alt={post.author.name}
                       height={500}
@@ -73,17 +73,17 @@ const page = async ({ params: { slug } }: Props) => {
                   )}
                 </div>
 
-                <section className="absolute w-full px-8 pb-5 gap-5 flex flex-col items-start  bottom-0 z-20 text-white ">
+                <section className="absolute w-full px-4 lg:px-8 pb-3 lg:pb-5 gap-5 flex flex-col items-start  bottom-0 z-20 text-white ">
                   <h1
                     style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.5)" }}
-                    className="text-5xl max-w-[1000px] leading-[1.1] w-full text-start  font-semibold hyphens-auto"
+                    className="text-3xl lg:text-5xl max-w-[1000px] leading-[1.1] w-full text-start  font-semibold hyphens-auto"
                   >
                     {post.title}
                   </h1>
 
                   <p className="text-lg">{post.description}</p>
 
-                  <div className="flex justify-between items-center w-full">
+                  <div className="flex flex-col lg:flex-row justify-between gap-5 items-start lg:items-center w-full">
                     <div className="flex items-center gap-4 ">
                       {post.categories.map((category) => (
                         <span
@@ -126,17 +126,20 @@ const page = async ({ params: { slug } }: Props) => {
                 </section>
               </div>
             </section>
-            <section className="mt-14 px-10 flex justify-between w-full ">
-              <article className="flex-[7] max-w-[800px] space-y-5">
+            <section className="mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-8 lg:gap-0 w-full ">
+              <article className="flex-[7] max-w-[800px] font-medium  lg:space-y-5">
                 <PortableText
                   value={post.body}
                   components={RichTextComponent}
                 />
               </article>
-              <aside className="flex-[3] max-w-[350px]  w-full ">
+              <aside className="flex-[3] max-w-[350px] flex flex-col-reverse lg:flex-col  w-full ">
                 <ul className="space-y-4 max-w-[300px]  w-full ">
                   {headings.map((h) => (
-                    <li className="font-bold text-lg" key={h._key}>
+                    <li
+                      className="font-bold text-lg"
+                      key={h._key}
+                    >
                       <a href={`#${slugify(h.children[0].text)}`}>
                         {h.children[0].text}
                       </a>
@@ -144,7 +147,7 @@ const page = async ({ params: { slug } }: Props) => {
                   ))}
                 </ul>
 
-                <hr className="my-7" />
+                <hr className="my-7 hidden lg:inline" />
 
                 <div className=" flex flex-col gap-3 ">
                   <span className="font-semibold">Written by</span>
@@ -164,7 +167,7 @@ const page = async ({ params: { slug } }: Props) => {
                       </span>
                     </div>
                   </div>
-                  <hr className="my-7" />
+                  <hr className="my-4 lg:my-7" />
                 </div>
               </aside>
             </section>

@@ -55,11 +55,11 @@ const SharePost = () => {
       <span
         onClick={handleCopy}
         style={{ textShadow: "0px 1px 1px rgba(0,0,0,0.5)" }}
-        className="flex items-center cursor-pointer font-medium gap-2 shadow-md text-center px-3  py-1 text-sm border border-white rounded-[10px]"
+        className="flex items-center cursor-pointer font-medium gap-2 shadow-md text-center px-3  py-2 lg:py-1 text-sm border border-white rounded-[10px]"
       >
         {/* @ts-ignore */}
         <FaRegCopy />
-        {copied ? "Copied!" : "Copy Link"}
+        <span className="hidden sm:inline">{copied ? "Copied!" : "Copy Link"}</span>
       </span>
 
       <span
