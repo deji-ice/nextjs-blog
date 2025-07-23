@@ -126,15 +126,15 @@ const page = async ({ params: { slug } }: Props) => {
                 </section>
               </div>
             </section>
-            <section className="mt-10 px-10 flex justify-between w-full ">
-              <article className="basis-[75%] max-w-3xl space-y-5">
+            <section className="mt-14 px-10 flex justify-between w-full ">
+              <article className="flex-[7] max-w-[800px] space-y-5">
                 <PortableText
                   value={post.body}
                   components={RichTextComponent}
                 />
               </article>
-              <aside className="basis-[25%] w-full ">
-                <ul className="space-y-4 max-w-[300px] w-full ">
+              <aside className="flex-[3] max-w-[350px]  w-full ">
+                <ul className="space-y-4 max-w-[300px]  w-full ">
                   {headings.map((h) => (
                     <li className="font-bold text-lg" key={h._key}>
                       <a href={`#${slugify(h.children[0].text)}`}>
