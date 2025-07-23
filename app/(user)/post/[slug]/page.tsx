@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await client.fetch(query, { slug: params.slug });
 
   const title = post?.title || "The Code Chronicles";
+  const ogImage = post?.mainImage ? urlFor(post.mainImage).url() : "/LOGO.png";
   const description =
     post?.description ||
     "Expand your mind and broaden your horizons with our captivating chronicles of curiosity";
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       images: [
         {
-          url: urlFor(post.mainImage).url() || "/LOGO.png",
+          url: ogImage,
         },
       ],
     },
@@ -43,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: [urlFor(post.mainImage).url() || "/LOGO.png"],
+      images: [ogImage],
     },
   };
 }
