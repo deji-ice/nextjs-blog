@@ -64,7 +64,7 @@ const page = async ({ params: { slug } }: Props) => {
                 <div className="w-full h-full  ">
                   {post && post.mainImage && (
                     <Image
-                      className="object-cover w-full h-[75vh] lg:h-[90vh] bg-blue-500 rounded-none rounded-b-3xl lg:rounded-b-none  lg:rounded-[2rem]  object-center "
+                      className="object-cover w-full h-[75vh] lg:h-[90vh] rounded-none rounded-b-3xl lg:rounded-b-none  lg:rounded-[2rem]  object-center "
                       src={urlFor(post.mainImage).url()}
                       alt={post.author.name}
                       height={500}
