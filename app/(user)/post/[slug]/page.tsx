@@ -18,7 +18,13 @@ type Props = {
 export const revalidate = 60; //revalidate page every 60 secs
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const query = groq`*[_type == "post" && slug.current == $slug][0]{ title, description }`;
+  const query = groq`
+    *[_type == "post" && slug.current == $slug][0]{
+      title,
+      description,
+      mainImage
+    }
+  `;
   const post = await client.fetch(query, { slug: params.slug });
 
   const title = post?.title || "The Code Chronicles";
