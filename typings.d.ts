@@ -28,6 +28,7 @@ interface Author extends Base {
 interface Image {
     asset: Reference,
     _type: "image",
+    alt?: string
 }
 
 interface Reference {

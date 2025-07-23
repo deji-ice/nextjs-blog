@@ -39,11 +39,11 @@ export default defineType({
       },
       fields: [
         {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
         },
-      ],
+      ] as any,
     }),
     defineField({
       name: 'categories',
