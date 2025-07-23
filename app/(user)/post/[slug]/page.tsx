@@ -176,7 +176,7 @@ const page = async ({ params: { slug } }: Props) => {
                 />
               </article>
               <aside className="flex-[3] max-w-[350px] flex flex-col-reverse lg:flex-col  w-full ">
-                <nav aria-label="Table of contents">
+                <nav className="hidden lg:block" aria-label="Table of contents">
                   <ul className="space-y-4 max-w-[300px]  w-full ">
                     {headings.map((h) => (
                       <li
