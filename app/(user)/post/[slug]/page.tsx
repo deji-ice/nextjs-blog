@@ -8,14 +8,45 @@ import Pathname from "@/components/Pathname";
 import { ShareIcon } from "@heroicons/react/24/solid";
 import Share from "@/components/Share";
 import SharePost from "@/components/SharePost";
+import { type Metadata } from "next";
+
 import { slugify } from "@/util/formatPathname";
 type Props = {
-  params: {
-    slug: string;
-  };
+  params: { slug: string };
 };
 
 export const revalidate = 60; //revalidate page every 60 secs
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const query = groq`*[_type == "post" && slug.current == $slug][0]{ title, description }`;
+  const post = await client.fetch(query, { slug: params.slug });
+
+  const title = post?.title || "The Code Chronicles";
+  const description =
+    post?.description ||
+    "Expand your mind and broaden your horizons with our captivating chronicles of curiosity";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      images: [
+        {
+          url: urlFor(post.mainImage).url() || "/LOGO.png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [urlFor(post.mainImage).url() || "/LOGO.png"],
+    },
+  };
+}
 
 export const generateStaticParams = async () => {
   const query = groq`
@@ -142,7 +173,7 @@ const page = async ({ params: { slug } }: Props) => {
                 />
               </article>
               <aside className="flex-[3] max-w-[350px] flex flex-col-reverse lg:flex-col  w-full ">
-                <nav>
+                <nav aria-label="Table of contents">
                   <ul className="space-y-4 max-w-[300px]  w-full ">
                     {headings.map((h) => (
                       <li
