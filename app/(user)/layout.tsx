@@ -39,11 +39,11 @@ const cabinetGrotesk = localFont({
 export const metadata = {
   title: "The Code Chronicles",
   description: "Expand your mind and broaden your horizons...",
-  openGraph: {
-    title: "The Code Chronicles",
-    description: "Expand your mind...",
-    images: ["/LOGO.png"],
-  },
+  // openGraph: {
+  //   title: "The Code Chronicles",
+  //   description: "Expand your mind...",
+  //   images: ["/LOGO.png"],
+  // },
 };
 
 export default function RootLayout({
