@@ -16,11 +16,11 @@ const Header = () => {
         className="flex flex-5 md:flex-1 flex-col justify-center py-2 items-center"
         href={"/"}
       >
-        <h1 className="hover:cursor-pointer text-2xl leading-6 md:text-3xl text-white lg:text-4xl">
+        <h1 className="hover:cursor-pointer text-2xl font-heading leading-6 md:text-3xl text-white lg:text-4xl">
           <span className="text-xl md:text-2xl lg:text-3xl">The </span>
           Code Chronicles
         </h1>
-        <h2 className="mt-2 text-xs lg:mt-2 text-white lg:text-base xl:text-sm font-medium">
+        <h2 className="mt-2 text-xs  font-heading lg:mt-2 text-white lg:text-base xl:text-sm font-medium">
           welcome to{" "}
           <span className="underline underline-offset-2 decoration-2 decoration-yellow-600">
             Every developers

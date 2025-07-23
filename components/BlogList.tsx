@@ -46,7 +46,7 @@ const BlogList = ({ posts }: Props) => {
             </div>
             <div className="mt-5 flex-1">
               <div className="flex items-start gap-3 justify-between">
-                <p className="text-xl lg:text-lg max-w-[90%] h-fit font-semibold lg:font-bold ">
+                <p className="text-xl font-heading lg:text-lg max-w-[90%] h-fit font-semibold lg:font-bold ">
                   {post.title}
                 </p>
                 <span className="mt-2 font-bold">
@@ -56,7 +56,7 @@ const BlogList = ({ posts }: Props) => {
                 </span>
               </div>
 
-              <p className="lg:text-sm font-semibold text-sm mt-2">
+              <p className="lg:text-sm font-heading font-semibold text-sm mt-2">
                 {post.description}{" "}
               </p>
             </div>
