@@ -1,4 +1,4 @@
-import { previewData } from "next/headers";
+import { draftMode } from "next/headers";
 import { groq } from "next-sanity";
 import { client } from "@/util/sanity.client";
 import PreviewSuspense from "../../components/PreviewSuspense";
@@ -16,11 +16,13 @@ const query = groq`
 export const revalidate = 60; //revalidate page every 60 secs
 
 export default async function Home() {
-  if (previewData()) {
+  const { isEnabled } = draftMode();
+
+  if (isEnabled) {
     return (
       <PreviewSuspense
         fallback={
-          <div className="" role="status">
+          <div role="status">
             <p className="text-center animate-pulse text-lg">
               Loading Preview Mode
             </p>
@@ -33,7 +35,5 @@ export default async function Home() {
   }
 
   const posts = await client.fetch(query);
-  return (
-    <BlogList posts={posts}/>
-  );
+  return <BlogList posts={posts} />;
 }

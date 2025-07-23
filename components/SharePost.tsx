@@ -52,37 +52,47 @@ const SharePost = () => {
   };
   return (
     <div className="text-white flex gap-4 items-center ">
-      <span
+      <button
         onClick={handleCopy}
         style={{ textShadow: "0px 1px 1px rgba(0,0,0,0.5)" }}
         className="flex items-center cursor-pointer font-medium gap-2 shadow-md text-center px-3  py-2 lg:py-1 text-sm border border-white rounded-[10px]"
+        aria-label={copied ? "Copied!" : "Copy link to clipboard"}
+        type="button"
       >
         {/* @ts-ignore */}
         <FaRegCopy />
-        <span className="hidden sm:inline">{copied ? "Copied!" : "Copy Link"}</span>
-      </span>
+        <span className="hidden sm:inline">
+          {copied ? "Copied!" : "Copy Link"}
+        </span>
+      </button>
 
-      <span
+      <button
         onClick={handleLinkedInShare}
+        type="button"
         className="text-center cursor-pointer px-3  py-2 text-sm border shadow-md border-white rounded-[10px]"
+        aria-label="Share on LinkedIn"
       >
         {/* @ts-ignore */}
         <FaLinkedinIn />
-      </span>
-      <span
+      </button>
+      <button
         onClick={handleTwitterShare}
+        type="button"
         className="text-center cursor-pointer px-3  py-2 text-sm shadow-md border  border-white rounded-[10px]"
+        aria-label="Share on Twitter"
       >
         {/* @ts-ignore */}
         <FaXTwitter />
-      </span>
-      <span
+      </button>
+      <button
         onClick={handleFacebookShare}
+        type="button"
         className="text-center cursor-pointer px-3  py-2 text-sm  shadow-md border border-white rounded-[10px]"
+        aria-label="Share on Facebook"
       >
         {/* @ts-ignore */}
         <FaSquareFacebook />
-      </span>
+      </button>
     </div>
   );
 };
