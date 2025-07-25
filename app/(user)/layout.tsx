@@ -37,7 +37,17 @@ const cabinetGrotesk = localFont({
 });
 
 export const metadata = {
-  title: "The Code Chronicles",
+  metadataBase: new URL("https://thecodechronicles.vercel.app/"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+    },
+  },
+  title: {
+    template: "%s | The Code Chronicles",
+    default: "The Code Chronicles", // a default is required when creating a template
+  },
   description: "Expand your mind and broaden your horizons...",
   // openGraph: {
   //   title: "The Code Chronicles",
