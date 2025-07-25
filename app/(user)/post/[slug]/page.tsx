@@ -98,7 +98,7 @@ const page = async ({ params: { slug } }: Props) => {
                 <div className="w-full h-full  ">
                   {post && post.mainImage && (
                     <Image
-                      className="object-cover w-full h-[75vh] lg:h-[90vh] rounded-none rounded-b-[2rem]  lg:rounded-[2rem]  object-center "
+                      className="object-cover w-full h-[75vh] lg:h-[90vh] rounded-none rounded-b-[1.5rem]  lg:rounded-[2rem]  object-center "
                       src={urlFor(post.mainImage).url()}
                       alt={
                         post.mainImage.alt || `Cover image for ${post.title}`
@@ -110,6 +110,14 @@ const page = async ({ params: { slug } }: Props) => {
                     />
                   )}
                 </div>
+
+                <span className="text-center text-white absolute  left-0 mx-4 lg:mx-8 top-6 lg:top-8 px-3  py-1 text-sm shadow-md border border-white rounded-[10px] ">
+                  {new Date(post._createdAt).toLocaleDateString("en-US", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </span>
 
                 <section className="absolute w-full px-4 lg:px-8 pb-3 lg:pb-5 gap-5 flex flex-col items-start  bottom-0 z-20 text-white ">
                   <h1
@@ -123,13 +131,6 @@ const page = async ({ params: { slug } }: Props) => {
 
                   <div className="flex flex-col lg:flex-row justify-between gap-5 items-start lg:items-center w-full">
                     <div className="flex items-center gap-4 ">
-                      <span className="text-center px-3  py-1 text-sm shadow-md border border-white rounded-[10px] ">
-                        {new Date(post._createdAt).toLocaleDateString("en-US", {
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric",
-                        })}
-                      </span>
                       {post.categories.map((category) => (
                         <span
                           key={category._id}
