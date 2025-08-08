@@ -32,7 +32,7 @@ const Share = ({ classNames }: Props) => {
   useEffect(() => {
     if (!open || !buttonRef.current) return;
     const rect = buttonRef.current.getBoundingClientRect();
-    const menuW = 256; // ~w-64
+    const menuW = 256; // w-64
     const gutter = 16; // 1rem
     const spaceRight = window.innerWidth - rect.right; // space to the right of button
     const spaceLeft = rect.left; // space to the left of button
