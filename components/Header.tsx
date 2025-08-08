@@ -51,7 +51,7 @@ const Header = () => {
             <span>Subscribe</span>
           </button>
         </div>
-        
+
         <div className="flex md:hidden justify-center flex-5 gap-5 items-center">
           <div className="p-2 rounded-lg hover:bg-slate-800 transition-colors">
             <Search />
