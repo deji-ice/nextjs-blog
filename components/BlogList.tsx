@@ -16,7 +16,7 @@ const BlogList = ({ posts }: Props) => {
 
   return (
     <div
-      className={`grid grid-cols-1 mt-5 lg:mt-5 md:grid-cols-3  gap-14 lg:gap-10 `}
+      className={`grid grid-cols-1 mt-5 lg:mt-5 md:grid-cols-3  gap-14 md:gap-5 lg:gap-10 `}
     >
       {/* all the posts */}
       {sortedPosts.map((post, index) => (
@@ -32,7 +32,7 @@ const BlogList = ({ posts }: Props) => {
           <div className={`group cursor-pointer flex flex-col w-full `}>
             <div
               className={`relative w-full h-60 ${
-                index === 0 ? "md:h-96" : ""
+                index === 0 ? " lg:h-96" : " md:h-48 lg:h-60"
               }  drop-shadow-xl transition-transform duration-200 ease-out`}
             >
               <Image
@@ -53,15 +53,15 @@ const BlogList = ({ posts }: Props) => {
                     className={`${
                       index === 0
                         ? "lg:text-3xl md:text-2xl"
-                        : "text-xl lg:text-lg "
+                        : "text-xl md:text-lg md:line-clamp-2 lg:text-lg "
                     } font-heading max-w-[90%] h-fit font-semibold lg:font-bold `}
                   >
                     {post.title}
                   </p>
-                  <span className={`mt-2 font-bold`}>
+                  <span className={`mt-2 font-bold ${index === 0 ? "hidden" : "block"}`}>
                     {/* @ts-ignore */}
                     <FaArrowUpRightFromSquare
-                      className={`h-5 w-5 lg:h-4 lg:w-4`}
+                      className={`h-5 w-5  md:h-4 md:w-4`}
                     />
                     {/* <ArrowUpRightIcon className="h-4 w-4" /> */}
                   </span>
