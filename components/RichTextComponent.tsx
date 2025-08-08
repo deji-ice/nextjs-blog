@@ -9,28 +9,40 @@ export const RichTextComponent = {
   types: {
     image: ({ value }: any) => {
       return (
-        <div className="relative w-full h-96 my-5 justify-center">
+        <figure className="relative w-full h-64 sm:h-80 md:h-96 my-6 rounded-lg overflow-hidden">
           <Image
             src={urlFor(value).url()}
             alt={value.alt || "Post image"}
             fill
-            className="object-contain"
+            sizes="(min-width: 1024px) 800px, 100vw"
+            className="object-contain md:object-cover"
           />
-        </div>
+          {value.alt && (
+            <figcaption className="mt-2 text-center text-xs text-gray-500">
+              {value.alt}
+            </figcaption>
+          )}
+        </figure>
       );
     },
     code: ({ value }: any) => {
-      return <CodeBlock language={value.language} code={value.code} />;
+      return (
+        <div className="my-4 overflow-x-auto rounded-lg">
+          <CodeBlock language={value.language} code={value.code} />
+        </div>
+      );
     },
+    hr: () => <hr className="my-8 border-t border-gray-300" />,
+    rule: () => <hr className="my-8 border-t border-gray-300" />,
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="ml-6 list-disc space-y-2 text-base md:text-lg py-4">
+      <ul className="ml-5 md:ml-6 list-disc space-y-2 text-base md:text-lg py-4 leading-7 md:leading-8">
         {children}
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="ml-6 list-decimal space-y-2 text-base md:text-lg py-4">
+      <ol className="ml-5 md:ml-6 list-decimal space-y-2 text-base md:text-lg py-4 leading-7 md:leading-8">
         {children}
       </ol>
     ),
@@ -38,14 +50,14 @@ export const RichTextComponent = {
 
   block: {
     h1: ({ children }: any) => (
-      <h1 className="text-3xl  md:text-5xl lg:text-6xl font-heading font-bold py-4">
+      <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold py-4 leading-tight md:leading-[1.15]">
         {children}
       </h1>
     ),
     h2: ({ children }: any) => (
       <h2
         id={slugify(children[0])}
-        className="text-2xl md:text-4xl font-heading lg:text-5xl font-bold py-3"
+        className="text-2xl md:text-4xl lg:text-5xl font-heading font-bold py-3 leading-tight md:leading-[1.2]"
       >
         {children}
       </h2>
@@ -53,7 +65,7 @@ export const RichTextComponent = {
     h3: ({ children }: any) => (
       <h3
         id={slugify(children[0])}
-        className="text-xl md:text-3xl font-heading lg:text-4xl font-semibold py-3"
+        className="text-xl md:text-3xl lg:text-4xl font-heading font-semibold py-3 leading-snug"
       >
         {children}
       </h3>
@@ -61,30 +73,65 @@ export const RichTextComponent = {
     h4: ({ children }: any) => (
       <h4
         id={slugify(children[0])}
-        className="text-lg md:text-2xl font-heading lg:text-3xl font-semibold py-2"
+        className="text-lg md:text-2xl lg:text-3xl font-heading font-semibold py-2 leading-snug"
       >
         {children}
       </h4>
     ),
+    h5: ({ children }: any) => (
+      <h5
+        id={slugify(children[0])}
+        className="text-base md:text-xl lg:text-2xl font-heading font-semibold py-2 leading-snug"
+      >
+        {children}
+      </h5>
+    ),
+    h6: ({ children }: any) => (
+      <h6
+        id={slugify(children[0])}
+        className="text-base md:text-lg font-heading font-semibold py-2 leading-snug"
+      >
+        {children}
+      </h6>
+    ),
     normal: ({ children }: any) => (
-      <p className="text-base md:text-lg leading-relaxed py-3">{children}</p>
+      <p className="text-base md:text-lg leading-7 md:leading-8 py-3">
+        {children}
+      </p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-blue-500 bg-gray-50 italic pl-4 md:pl-6 py-4 my-6">
+      <blockquote className="border-l-4 border-slate-300 bg-slate-100 text-slate-700 italic pl-4 md:pl-6 py-4 my-6 rounded-r">
         {children}
       </blockquote>
     ),
   },
 
   marks: {
+    strong: ({ children }: any) => (
+      <strong className="font-semibold">{children}</strong>
+    ),
+    em: ({ children }: any) => <em className="italic">{children}</em>,
+    underline: ({ children }: any) => (
+      <span className="underline underline-offset-2">{children}</span>
+    ),
+    code: ({ children }: any) => (
+      <code className="px-1.5 py-0.5 rounded bg-slate-800/90 text-slate-50 text-[0.85em]">
+        {children}
+      </code>
+    ),
+    strike: ({ children }: any) => (
+      <span className="line-through">{children}</span>
+    ),
     link: ({ children, value }: any) => {
-      const rel = !value.href.startsWith("/")
-        ? "noreferrer noopener"
-        : undefined;
+      const isExternal =
+        typeof value?.href === "string" && !value.href.startsWith("/");
+      const rel = isExternal ? "noreferrer noopener" : undefined;
+      const target = isExternal ? "_blank" : undefined;
       return (
         <Link
-          className="text-blue-500 font-semibold"
+          className="text-blue-600 hover:underline underline-offset-2"
           rel={rel}
+          target={target}
           href={value.href}
         >
           {children}
