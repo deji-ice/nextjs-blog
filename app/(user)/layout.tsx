@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import "../globals.css";
 import { Lato } from "@next/font/google";
 import localFont from "@next/font/local";
+import Footer from "@/components/Footer";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -72,7 +73,10 @@ export default function RootLayout({
           soon with an enhanced user experience 🚧 👷{" "}
         </p> */}
         <Header />
-        {children}
+      <main className="mx-auto max-w-[1400px]">
+          {children}
+      </main>
+        <Footer />
       </body>
     </html>
   );

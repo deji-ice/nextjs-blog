@@ -98,7 +98,7 @@ const page = async ({ params: { slug } }: Props) => {
                 <div className="w-full h-full  ">
                   {post && post.mainImage && (
                     <Image
-                      className="object-cover w-full h-[75vh] lg:h-[90vh] rounded-none rounded-b-[1.5rem]  lg:rounded-[2rem]  object-center "
+                      className="object-cover w-full h-[75vh] lg:h-[90vh] xl:max-h-[700px] rounded-none rounded-b-[1.5rem]  lg:rounded-[2rem]  object-center "
                       src={urlFor(post.mainImage).url()}
                       alt={
                         post.mainImage.alt || `Cover image for ${post.title}`
