@@ -36,7 +36,7 @@ const cabinetGrotesk = localFont({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://thecodechronicles.vercel.app/"),
+  metadataBase: new URL("https://www.thecodechronicles.tech/"),
   alternates: {
     canonical: "/",
     languages: {
@@ -47,7 +47,29 @@ export const metadata = {
     template: "%s | The Code Chronicles",
     default: "The Code Chronicles",
   },
-  description: "Expand your mind and broaden your horizons...",
+  description:
+    "Expand your mind and broaden your horizons with our captivating chronicles of curiosity",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.thecodechronicles.tech/",
+    siteName: "The Code Chronicles",
+    images: [
+      {
+        url: "/LOGO.png",
+        width: 1200,
+        height: 630,
+        alt: "The Code Chronicles",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Code Chronicles",
+    description: "Explore the latest in tech and development.",
+    images: ["/LOGO.png"],
+    creator: "@yourhandle",
+  },
 };
 
 export default function RootLayout({

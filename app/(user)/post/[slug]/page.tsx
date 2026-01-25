@@ -29,7 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await client.fetch(query, { slug: params.slug });
 
   const title = post?.title || "The Code Chronicles";
-  const ogImage = post?.mainImage ? urlFor(post.mainImage).url() : "/LOGO.png";
+  const ogImage = post?.mainImage
+    ? urlFor(post.mainImage).width(1200).height(630).fit("max").url()
+    : "/LOGO.png";
   const description =
     post?.description ||
     "Expand your mind and broaden your horizons with our captivating chronicles of curiosity";
@@ -48,15 +50,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       images: [ogImage],
+      creator: "@yourhandle",
+      site: "@yourhandle",
     },
   };
 }
 
 export const generateStaticParams = async () => {
   const query = groq`
-    *[_type == "post"] 
+    *[_type == "post"] | order(_createdAt desc) [0...100]
     {
-slug 
+      slug 
     }`;
 
   const slugs: Post[] = await client.fetch(query);
@@ -73,8 +77,14 @@ const page = async ({ params: { slug } }: Props) => {
     *[_type == "post" && slug.current == $slug][0] 
     {
         ...,
-        author->,
-        categories[]->,
+        author-> {
+          name,
+          image
+        },
+        categories[]-> {
+          _id,
+          title
+        }
     }
 `;
   const post: Post = await client.fetch(query, { slug: slug });

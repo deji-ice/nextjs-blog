@@ -13,7 +13,7 @@ export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaT
                         url:
                             process.env.NODE_ENV === "development"
                                 ? "http://localhost:3000/api/preview"
-                                : "https://thecodechronicles.vercel.app/api/preview",
+                                : "https://www.thecodechronicles.tech/api/preview",
                         defaultSize: "desktop",
                         reload: { button: true },
                         attributes: {}

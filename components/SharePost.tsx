@@ -51,7 +51,7 @@ const SharePost = () => {
     );
   };
   return (
-    <div className="text-white flex  gap-2 lg:gap-4 items-center ">
+    <div className="text-white flex  gap-4 items-center ">
       {/* <button
         onClick={handleCopy}
         style={{ textShadow: "0px 1px 1px rgba(0,0,0,0.5)" }}
@@ -73,7 +73,7 @@ const SharePost = () => {
         aria-label="Share on LinkedIn"
       >
         {/* @ts-ignore */}
-        <FaLinkedinIn className="text-[rgba(164,167,174,1)] h-6 w-6 text-[24px]" />
+        <FaLinkedinIn className="text-[rgba(164,167,174,1)] h-4 w-4 lg:h-6 lg:w-6 text-[24px]" />
       </button>
       <button
         onClick={handleTwitterShare}
@@ -82,7 +82,7 @@ const SharePost = () => {
         aria-label="Share on Twitter"
       >
         {/* @ts-ignore */}
-        <FaXTwitter  className="text-[rgba(164,167,174,1)] h-6 w-6 text-[24px]"/>
+        <FaXTwitter  className="text-[rgba(164,167,174,1)] h-4 w-4 lg:h-6 lg:w-6 text-[24px]"/>
       </button>
       <button
         onClick={handleFacebookShare}
@@ -91,7 +91,7 @@ const SharePost = () => {
         aria-label="Share on Facebook"
       >
         {/* @ts-ignore */}
-        <FaSquareFacebook  className="text-[rgba(164,167,174,1)] h-6 w-6 text-[24px]"/>
+        <FaSquareFacebook  className="text-[rgba(164,167,174,1)] h-4 w-4 lg:h-6 lg:w-6 text-[24px]"/>
       </button>
     </div>
   );
