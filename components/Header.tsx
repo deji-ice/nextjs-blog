@@ -21,7 +21,7 @@ const Header = () => {
               The Code Chronicles
             </h1>
             <p className="text-[10px] md:text-[11px] font-medium text-slate-300 uppercase tracking-[0.15em]">
-              {"Every developer's"}
+              {"Every developer's "}
               <span className="underline underline-offset-4 decoration-[3px] decoration-yellow-600 text-white">
                 favorite blog
               </span>
@@ -30,7 +30,7 @@ const Header = () => {
         </div>
 
         {/* Desktop Nav (Center) */}
-        <nav className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 gap-10">
+        {/* <nav className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -40,20 +40,15 @@ const Header = () => {
               {link.name}
             </Link>
           ))}
-        </nav>
+        </nav> */}
 
         {/* Action Area (Right) */}
         <div className="flex items-center gap-2 md:gap-4 font-body">
-          <div className="hidden md:flex items-center gap-3 mr-2">
+          <div className="flex items-center h-5 gap-3 mr-2">
             <Search iconClassName="text-white" />
             <Share classNames="w-5 h-5 text-white hover:text-indigo-400 transition-colors cursor-pointer" />
           </div>
-
-          <button className="hidden sm:flex px-6 py-2.5 bg-indigo-600 text-white text-[13px] font-bold rounded-xl hover:bg-indigo-700 transition-all duration-200 shadow-sm active:scale-95">
-            Subscribe
-          </button>
-
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 text-white hover:bg-slate-800 rounded-xl transition-all"
@@ -64,12 +59,12 @@ const Header = () => {
             ) : (
               <Bars3Icon className="w-7 h-7" />
             )}
-          </button>
+          </button> */}
         </div>
       </div>
 
       {/* Mobile Menu (Overlay) */}
-      {isMenuOpen && (
+      {/* {isMenuOpen && (
         <div className="lg:hidden fixed inset-0 top-[81px] bg-slate-950 z-40 animate-in fade-in slide-in-from-top-4 duration-300">
           <div className="p-8 flex flex-col items-center gap-8 h-full bg-slate-950 font-body">
             <nav className="flex flex-col items-center gap-8 w-full mt-4">
@@ -92,13 +87,11 @@ const Header = () => {
                 <Search iconClassName="text-white" />
                 <Share classNames="w-6 h-6 text-white hover:text-indigo-400 transition-colors" />
               </div>
-              <button className="w-full max-w-xs py-3.5 bg-indigo-600 text-white text-[15px] font-bold rounded-xl shadow-lg active:scale-95 transition-transform font-heading uppercase tracking-widest">
-                Subscribe
-              </button>
+           
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </header>
   );
 };

@@ -32,7 +32,7 @@ const BlogList = ({ posts }: Props) => {
           <div className={`group cursor-pointer flex flex-col w-full `}>
             <div
               className={`relative w-full h-60 ${
-                index === 0 ? " lg:h-[30rem]" : " md:h-48 lg:h-60"
+                index === 0 ? " lg:h-[50rem]" : " md:h-48 lg:h-60"
               }  drop-shadow-xl transition-transform duration-200 ease-out`}
             >
               <Image
@@ -87,108 +87,48 @@ const BlogList = ({ posts }: Props) => {
                 <div
                   className={`flex flex-col  ${
                     index === 0
-                      ? " md:h-full md:justify-between md:items-start md:mb-3 md:min-h-[60px]"
-                      : "gap-2"
+                      ? " md:justify-between md:items-start "
+                      : "gap-"
                   }`}
                 >
                   <span
                     className={`${
                       index === 0
-                        ? "hidden md:inline md:text-sm md:mb-3 md:font-semibold"
+                        ? "hidden md:inline md:text-sm md:mb-1 md:font-semibold"
                         : "hidden"
                     }`}
                   >
-                    Categories
+                    Tags
                   </span>
-                  <div className={`flex mt-1 gap-2 items-center`}>
+                  <div className={`flex gap-2 items-center`}>
                     {post.categories.map((category) => (
                       <span
                         key={category._id}
                         className={`flex items-center justify-center text-center text-black
-                             px-3  py-0.5 rounded-md md:rounded-[10px] border border-black text-xs  font-medium md:font-semibold`}
+                             px-1  py-0.5 rounded-md border border-black text-xs  font-medium md:font-semibold`}
                       >
                         {category.title}
                       </span>
                     ))}
                   </div>
                 </div>
-                <div
-                  className={`flex items-start ${
-                    index === 0 ? "md:gap-14  md:min-h-[80px] gap-2" : "gap-2"
-                  }`}
-                >
-                  <div
-                    className={`flex flex-col ${
-                      index === 0
-                        ? "md:justify-between md:h-full md:min-h-[60px]"
-                        : ""
-                    }`}
-                  >
-                    <span
-                      className={`${
-                        index === 0
-                          ? "hidden md:block md:text-sm md:mb-3 md:font-semibold"
-                          : "hidden"
-                      }`}
-                    >
-                      Written by
+                <div className="flex items-center font-heading gap-2">
+                  <Image
+                    className="rounded-full h-10 lg:h-12 w-10 lg:w-12 object-cover"
+                    src={urlFor(post.author.image).url()}
+                    alt={`Photo of ${post.author.name}`}
+                    height={48}
+                    width={48}
+                  />
+                  <div className="flex flex-col text-sm lg:text-base ">
+                    <span className="font-semibold">{post.author.name}</span>
+                    <span className=" ">
+                      {new Date(post._createdAt).toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })}
                     </span>
-                    <span className="flex items-center gap-2">
-                      <Image
-                        className={`rounded-full h-10 w-10 object-cover`}
-                        src={urlFor(post.author.image).url()}
-                        alt={post.author.name}
-                        width={40}
-                        height={40}
-                      />
-                      <span
-                        className={` ${
-                          index === 0
-                            ? "hidden md:inline md:text-sm "
-                            : "hidden"
-                        }`}
-                      >
-                        {post.author.name}
-                      </span>
-                    </span>
-                  </div>
-                  <div
-                    className={`flex flex-col ${
-                      index === 0
-                        ? "md:justify-between md:h-full md:min-h-[60px]"
-                        : ""
-                    }`}
-                  >
-                    <span
-                      className={`${
-                        index === 0
-                          ? "hidden md:block md:text-sm md:mb-3 md:font-semibold"
-                          : "hidden"
-                      }`}
-                    >
-                      Published on
-                    </span>
-
-                    <div className={`flex flex-col`}>
-                      <span
-                        className={`${index === 0 ? "md:hidden text-sm" : "text-sm"}`}
-                      >
-                        {post.author.name}
-                      </span>
-                      <span
-                        className={`${
-                          index === 0
-                            ? "md:text-sm md:text-black text-xs text-gray-500"
-                            : "text-xs text-gray-500"
-                        }`}
-                      >
-                        {new Date(post._createdAt).toLocaleDateString("en-US", {
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric",
-                        })}
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
