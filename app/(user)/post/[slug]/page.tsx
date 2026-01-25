@@ -10,6 +10,7 @@ import Share from "@/components/Share";
 import SharePost from "@/components/SharePost";
 import { type Metadata } from "next";
 
+import { notFound } from "next/navigation";
 import { slugify } from "@/util/formatPathname";
 type Props = {
   params: { slug: string };
@@ -78,8 +79,12 @@ const page = async ({ params: { slug } }: Props) => {
 `;
   const post: Post = await client.fetch(query, { slug: slug });
 
-  const headings = post.body.filter(
-    (block) => block.style && block.style.startsWith("h")
+  if (!post) {
+    notFound();
+  }
+
+  const headings = post?.body?.filter(
+    (block) => block.style && block.style.startsWith("h"),
   );
 
   // console.log(post.body);
@@ -170,7 +175,7 @@ const page = async ({ params: { slug } }: Props) => {
               </div>
             </section>
             <section className="mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-8  w-full ">
-              <article className="flex-[7] max-w-[800px] font-medium  lg:space-y-5">
+              <article className="flex-[7] max-w-[800px] font-medium  lg:space-y-0">
                 <PortableText
                   value={post.body}
                   components={RichTextComponent}

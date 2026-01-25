@@ -57,7 +57,7 @@ export const RichTextComponent = {
     h2: ({ children }: any) => (
       <h2
         id={slugify(children[0])}
-        className="text-2xl md:text-4xl lg:text-5xl font-heading font-bold py-3 leading-tight md:leading-[1.2]"
+        className="text-2xl md:text-4xl lg:text-5xl font-heading font-bold lg:pt-10 pt-5 pb-2 leading-tight md:leading-[1.2]"
       >
         {children}
       </h2>
@@ -65,7 +65,7 @@ export const RichTextComponent = {
     h3: ({ children }: any) => (
       <h3
         id={slugify(children[0])}
-        className="text-xl md:text-3xl lg:text-4xl font-heading font-semibold py-3 leading-snug"
+        className="text-xl md:text-3xl lg:text-4xl font-heading font-semibold lg:pt-10 pt-5 pb-2 leading-snug"
       >
         {children}
       </h3>
@@ -73,7 +73,7 @@ export const RichTextComponent = {
     h4: ({ children }: any) => (
       <h4
         id={slugify(children[0])}
-        className="text-lg md:text-2xl lg:text-3xl font-heading font-semibold py-2 leading-snug"
+        className="text-[17px] md:text-2xl  font-heading font-semibold py-1.5 lg:py-2 leading-snug"
       >
         {children}
       </h4>
@@ -81,7 +81,7 @@ export const RichTextComponent = {
     h5: ({ children }: any) => (
       <h5
         id={slugify(children[0])}
-        className="text-base md:text-xl lg:text-2xl font-heading font-semibold py-2 leading-snug"
+        className="text-base md:text-xl lg:text-2xl font-heading font-semibold py-1.5 lg:py-2 leading-snug"
       >
         {children}
       </h5>
@@ -89,13 +89,13 @@ export const RichTextComponent = {
     h6: ({ children }: any) => (
       <h6
         id={slugify(children[0])}
-        className="text-base md:text-lg font-heading font-semibold py-2 leading-snug"
+        className="text-base md:text-lg font-heading font-semibold py-1.5 lg:py-2 leading-snug"
       >
         {children}
       </h6>
     ),
     normal: ({ children }: any) => (
-      <p className="text-base md:text-lg leading-7 md:leading-8 py-3">
+      <p className="text-base md:text-lg leading-7 md:leading-8 py-1">
         {children}
       </p>
     ),
