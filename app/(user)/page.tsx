@@ -36,9 +36,9 @@ export default async function Home() {
 
   const posts = await client.fetch(query);
   return (
-    <div className="flex flex-col px-5 lg:px-16 gap-8 lg:gap-10 pb-24">
-      <div className="flex flex-col gap-2 lg:gap-4 min-h-[20vh] border-b-2 border-slate-950 pt-5 md:pt-10 lg:pt-5 md:p-4 pb-8 md:pb-14">
-        <h1 className="font-heading text-3xl lg:text-5xl font-extrabold  ">
+    <div className="flex flex-col px-5 lg:px-10 gap-8 lg:gap-10 pb-24">
+      <div className="flex flex-col gap-2 lg:gap-4 min-h-[20vh] border-b-2 border-slate-950 pt-5 md:pt-10 lg:pt-5 md:p-4 pb-8 md:pb-10">
+        <h1 className="font-heading text-3xl lg:text-5xl font-bold  ">
           The Code Chronicles
         </h1>
         <p className=" font-medium  max-w-[800px]">

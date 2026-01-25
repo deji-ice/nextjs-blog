@@ -9,7 +9,7 @@ import Search from "./Search";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navLinks = [{ name: "Tutorials", href: "/category/tutorials" }];
+  const navLinks = [{ name: "Home", href: "/" }];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-slate-950 border-b border-slate-800">
@@ -21,7 +21,7 @@ const Header = () => {
               The Code Chronicles
             </h1>
             <p className="text-[10px] md:text-[11px] font-medium text-slate-300 uppercase tracking-[0.15em]">
-              Every developer's{" "}
+              {"Every developer's"}
               <span className="underline underline-offset-4 decoration-[3px] decoration-yellow-600 text-white">
                 favorite blog
               </span>
@@ -35,7 +35,7 @@ const Header = () => {
             <Link
               key={link.name}
               href={link.href}
-              className="text-[13px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-widest px-1"
+              className="text-[13px] font-bold text-slate-100 hover:text-white transition-colors uppercase tracking-widest px-1"
             >
               {link.name}
             </Link>
@@ -44,7 +44,7 @@ const Header = () => {
 
         {/* Action Area (Right) */}
         <div className="flex items-center gap-2 md:gap-4 font-body">
-          <div className="hidden md:flex items-center gap-1 mr-2">
+          <div className="hidden md:flex items-center gap-3 mr-2">
             <Search iconClassName="text-white" />
             <Share classNames="w-5 h-5 text-white hover:text-indigo-400 transition-colors cursor-pointer" />
           </div>
