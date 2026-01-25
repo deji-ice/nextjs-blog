@@ -5,7 +5,11 @@ import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { groq } from "next-sanity";
 import { client } from "@/util/sanity.client";
 
-const Search = () => {
+const Search = ({
+  iconClassName = "text-slate-600",
+}: {
+  iconClassName?: string;
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
@@ -80,9 +84,11 @@ const Search = () => {
     <div className="relative max-w-[400px]" ref={searchRef}>
       <div
         onClick={() => setShowSearchBar(true)}
-        className="p-2 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer group"
+        className="p-2 rounded-lg transition-colors cursor-pointer group"
       >
-        <MagnifyingGlassIcon className="w-5 xl:w-6 text-white group-hover:text-blue-400 transition-colors" />
+        <MagnifyingGlassIcon
+          className={`w-5 xl:w-6 ${iconClassName} group-hover:text-indigo-400 transition-colors`}
+        />
       </div>
 
       {showSearchBar && (

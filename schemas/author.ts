@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'author',
@@ -13,7 +13,7 @@ export default defineType({
     defineField({
       name: 'slug',
       title: 'Slug',
-      type: 'slug',
+      type: 'slug' as const,
       options: {
         source: 'name',
         maxLength: 96,
@@ -22,7 +22,7 @@ export default defineType({
     defineField({
       name: 'image',
       title: 'Image',
-      type: 'image',
+      type: 'image' as const,
       options: {
         hotspot: true,
       },
@@ -30,14 +30,14 @@ export default defineType({
     defineField({
       name: 'bio',
       title: 'Bio',
-      type: 'array',
+      type: 'array' as const,
       of: [
-        {
+        defineArrayMember({
           title: 'Block',
           type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          styles: [{ title: 'Normal', value: 'normal' }],
           lists: [],
-        },
+        }),
       ],
     }),
   ],

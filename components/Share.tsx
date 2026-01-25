@@ -217,7 +217,7 @@ const Share = ({ classNames }: Props) => {
                 aria-label="Share on X (Twitter)"
               >
                 <TwitterIcon fontSize="small" className="text-sky-500" />
-                <span className="text-sm">X (Twitter)</span>
+                <span className="text-sm">X </span>
               </button>
 
               <button

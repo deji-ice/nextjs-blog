@@ -39,6 +39,7 @@ export default defineType({
           { title: 'CSS', value: 'css' },
           { title: 'Solidity', value: 'solidity' },
           { title: 'Go', value: 'go' },
+          { title: 'Bash', value: 'bash' }
         ],
         withFilename: true,
       },

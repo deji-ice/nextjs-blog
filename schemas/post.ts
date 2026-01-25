@@ -18,7 +18,7 @@ export default defineType({
     defineField({
       name: 'slug',
       title: 'Slug',
-      type: 'slug',
+      type: 'slug' as const,
       options: {
         source: 'title',
         maxLength: 96,
@@ -27,13 +27,13 @@ export default defineType({
     defineField({
       name: 'author',
       title: 'Author',
-      type: 'reference',
+      type: 'reference' as const,
       to: { type: 'author' },
     }),
     defineField({
       name: 'mainImage',
       title: 'Main image',
-      type: 'image',
+      type: 'image' as const,
       options: {
         hotspot: true,
       },
@@ -43,12 +43,12 @@ export default defineType({
           type: "string",
           title: "Alternative text",
         },
-      ] as any,
+      ],
     }),
     defineField({
       name: 'categories',
       title: 'Categories',
-      type: 'array',
+      type: 'array' as const,
       of: [{ type: 'reference', to: { type: 'category' } }],
     }),
     defineField({
