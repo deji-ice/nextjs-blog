@@ -1,66 +1,104 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
-import { MagnifyingGlassIcon, ShareIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Share from "./Share";
 import Search from "./Search";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navLinks = [{ name: "Tutorials", href: "/category/tutorials" }];
+
   return (
-    <header className="flex justify-center bg-slate-950 lg:space-x-16 xl:w-screen xl:px-20 overflow-x-clip items-center lg:mb-2 font-bold px-5 md:px-10 py-3">
-      <div className="md:flex hidden flex-5 gap-5 xl:gap-8 items-center">
-        <Search />
-        <Share classNames="w-5 xl:w-6 text-white" />
-      </div>
+    <header className="sticky top-0 z-50 w-full bg-slate-950 border-b border-slate-800">
+      <div className="mx-auto max-w-[1400px] px-5 md:px-10 py-5 flex items-center justify-between">
+        {/* Logo (Left) */}
+        <div className="flex-shrink-0">
+          <Link href="/" className="flex flex-col group">
+            <h1 className="text-xl md:text-2xl font-heading font-bold text-white leading-tight group-hover:text-indigo-400 transition-colors">
+              The Code Chronicles
+            </h1>
+            <p className="text-[10px] md:text-[11px] font-medium text-slate-300 uppercase tracking-[0.15em]">
+              Every developer's{" "}
+              <span className="underline underline-offset-4 decoration-[3px] decoration-yellow-600 text-white">
+                favorite blog
+              </span>
+            </p>
+          </Link>
+        </div>
 
-      <Link
-        className="flex flex-5 md:flex-1 flex-col justify-center py-2 items-center"
-        href={"/"}
-      >
-        <h1 className="hover:cursor-pointer text-2xl font-heading leading-6 md:text-3xl text-white lg:text-4xl">
-          <span className="text-xl md:text-2xl lg:text-3xl">The </span>
-          Code Chronicles
-        </h1>
-        <h2 className="mt-2 text-xs  font-heading lg:mt-2 text-white lg:text-base xl:text-sm font-medium">
-          welcome to{" "}
-          <span className="underline underline-offset-2 decoration-2 decoration-yellow-600">
-            Every developers
-          </span>{" "}
-          favorite blog
-        </h2>
-      </Link>
-
-      <span className="flex md:hidden flex-1 px-10"></span>
-
-      <div className="flex-col flex-2 lg:flex-4 justify-center items-center space-y-6">
-        <div className="flex">
-          <button className="inline-flex p-2 xl:px-4 items-center justify-center text-sm md:text-base xl:text-lg font-medium text-center text-indigo-100 border border-indigo-500 rounded-lg shadow-sm cursor-pointer hover:text-white hover:bg-indigo-600 hover:border-indigo-600 transition-all duration-200 gap-1 group">
-            <svg
-              className="h-4 group-hover:animate-pulse"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+        {/* Desktop Nav (Center) */}
+        <nav className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 gap-10">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="text-[13px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-widest px-1"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              ></path>
-            </svg>
-            <span>Subscribe</span>
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Action Area (Right) */}
+        <div className="flex items-center gap-2 md:gap-4 font-body">
+          <div className="hidden md:flex items-center gap-1 mr-2">
+            <Search iconClassName="text-white" />
+            <Share classNames="w-5 h-5 text-white hover:text-indigo-400 transition-colors cursor-pointer" />
+          </div>
+
+          <button className="hidden sm:flex px-6 py-2.5 bg-indigo-600 text-white text-[13px] font-bold rounded-xl hover:bg-indigo-700 transition-all duration-200 shadow-sm active:scale-95">
+            Subscribe
+          </button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-2 text-white hover:bg-slate-800 rounded-xl transition-all"
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? (
+              <XMarkIcon className="w-7 h-7" />
+            ) : (
+              <Bars3Icon className="w-7 h-7" />
+            )}
           </button>
         </div>
+      </div>
 
-        <div className="flex md:hidden justify-center flex-5 gap-5 items-center">
-          <div className="p-2 rounded-lg hover:bg-slate-800 transition-colors">
-            <Search />
-          </div>
-          <div className="p-2 rounded-lg hover:bg-slate-800 transition-colors">
-            <Share classNames="w-5 text-white" />
+      {/* Mobile Menu (Overlay) */}
+      {isMenuOpen && (
+        <div className="lg:hidden fixed inset-0 top-[81px] bg-slate-950 z-40 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="p-8 flex flex-col items-center gap-8 h-full bg-slate-950 font-body">
+            <nav className="flex flex-col items-center gap-8 w-full mt-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-2xl font-bold text-white py-2 uppercase tracking-wide border-b-2 border-transparent hover:border-yellow-600 transition-all font-heading"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="w-full h-px bg-slate-800 my-4" />
+
+            <div className="flex flex-col items-center gap-6 w-full">
+              <div className="flex items-center gap-10 py-1">
+                <Search iconClassName="text-white" />
+                <Share classNames="w-6 h-6 text-white hover:text-indigo-400 transition-colors" />
+              </div>
+              <button className="w-full max-w-xs py-3.5 bg-indigo-600 text-white text-[15px] font-bold rounded-xl shadow-lg active:scale-95 transition-transform font-heading uppercase tracking-widest">
+                Subscribe
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };
