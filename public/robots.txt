@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://thecodechronicles.vercel.app/
+Host: https://www.thecodechronicles.tech/
 
 # Sitemaps
-Sitemap: https://thecodechronicles.vercel.app/sitemap.xml
+Sitemap: https://www.thecodechronicles.tech/sitemap.xml
