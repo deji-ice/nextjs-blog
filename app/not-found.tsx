@@ -39,11 +39,11 @@ export default function NotFound() {
         {/* Message */}
         <div className="space-y-4 mb-10">
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-white uppercase tracking-tight">
-           {`Oops! Page Not Found`}
+            {`Oops! Page Not Found`}
           </h2>
           <p className="text-lg sm:text-xl text-gray-200 max-w-xl mx-auto leading-relaxed font-body">
-            The page you're looking for has drifted beyond our reach. Let's get
-            you back to the transmission.
+            {`The page you're looking for has drifted beyond our reach. Let's get
+            you back to the transmission.`}
           </p>
         </div>
 
@@ -55,9 +55,7 @@ export default function NotFound() {
           >
             {/* <HomeIcon className="w-5 h-5" /> */}
 
-            <span className="font-heading">
-              Home
-            </span>
+            <span className="font-heading">Home</span>
           </Link>
         </div>
       </div>

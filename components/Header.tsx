@@ -6,7 +6,7 @@ import Search from "./Search";
 
 const Header = () => {
   return (
-    <header className="flex justify-center bg-slate-950 lg:space-x-16 xl:w-screen xl:px-20 overflow-x-clip items-center lg:mb-5 font-bold px-5 md:px-10 py-3">
+    <header className="flex justify-center bg-slate-950 lg:space-x-16 xl:w-screen xl:px-20 overflow-x-clip items-center lg:mb-2 font-bold px-5 md:px-10 py-3">
       <div className="md:flex hidden flex-5 gap-5 xl:gap-8 items-center">
         <Search />
         <Share classNames="w-5 xl:w-6 text-white" />

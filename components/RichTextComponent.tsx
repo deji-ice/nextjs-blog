@@ -57,7 +57,7 @@ export const RichTextComponent = {
     h2: ({ children }: any) => (
       <h2
         id={slugify(children[0])}
-        className="text-2xl md:text-4xl lg:text-5xl font-heading font-bold lg:pt-10 pt-5 pb-2 leading-tight md:leading-[1.2]"
+        className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold lg:pt-10 pt-5 pb-2 leading-tight md:leading-[1.2]"
       >
         {children}
       </h2>
@@ -65,7 +65,7 @@ export const RichTextComponent = {
     h3: ({ children }: any) => (
       <h3
         id={slugify(children[0])}
-        className="text-xl md:text-3xl lg:text-4xl font-heading font-semibold lg:pt-10 pt-5 pb-2 leading-snug"
+        className="text-2xl md:text-3xl lg:text-4xl font-heading font-semibold lg:pt-10 pt-5 pb-2 leading-snug"
       >
         {children}
       </h3>
@@ -73,7 +73,7 @@ export const RichTextComponent = {
     h4: ({ children }: any) => (
       <h4
         id={slugify(children[0])}
-        className="text-[17px] md:text-2xl  font-heading font-semibold py-1.5 lg:py-2 leading-snug"
+        className="text-lg md:text-2xl  font-heading font-semibold py-1.5 lg:py-2 leading-snug"
       >
         {children}
       </h4>
@@ -115,7 +115,7 @@ export const RichTextComponent = {
       <span className="underline underline-offset-2">{children}</span>
     ),
     code: ({ children }: any) => (
-      <code className="px-1.5 py-0.5 rounded bg-slate-800/90 text-slate-50 text-[0.85em]">
+      <code className="px-1.5 py-0.5 rounded bg-slate-800/60 text-slate-50 text-[0.85em]">
         {children}
       </code>
     ),
@@ -129,7 +129,7 @@ export const RichTextComponent = {
       const target = isExternal ? "_blank" : undefined;
       return (
         <Link
-          className="text-blue-600 hover:underline underline-offset-2"
+          className="text-blue-900 hover:underline underline-offset-2"
           rel={rel}
           target={target}
           href={value.href}

@@ -84,17 +84,13 @@ const page = async ({ params: { slug } }: Props) => {
   }
 
   const headings = post?.body?.filter(
-    (block) => block.style && block.style.startsWith("h"),
+    (block) => block.style && ["h1", "h2", "h3"].includes(block.style),
   );
 
   // console.log(post.body);
 
   return (
     <main id="main-content" className="relative w-full lg:px-4">
-      {/* <div className="mt-1 md:mt-0 sticky flex justify-between top-0 p-5 xl:mx-10 md:pl-10 bg-[#FAF9F6]  z-30  md:py-5  ">
-        <Pathname />
-        <Share classNames="w-5 md:w-6 mr-5 md:mr-3 lg:mr-6 xl:mr-16" />
-      </div> */}
       <section className=" relative pb-28  flex flex-col items-center  text-slate-950">
         {post && (
           <>
@@ -103,7 +99,7 @@ const page = async ({ params: { slug } }: Props) => {
                 <div className="w-full h-full  ">
                   {post && post.mainImage && (
                     <Image
-                      className="object-cover w-full h-[75vh] lg:h-[90vh] xl:max-h-[700px] rounded-none rounded-b-[1.5rem]  lg:rounded-[2rem]  object-center "
+                      className="object-cover w-full h-[75vh] lg:h-[90vh] lg:rounded-[12px]  object-center "
                       src={urlFor(post.mainImage).url()}
                       alt={
                         post.mainImage.alt || `Cover image for ${post.title}`
@@ -116,37 +112,53 @@ const page = async ({ params: { slug } }: Props) => {
                   )}
                 </div>
 
-                <span className="text-center text-white absolute  left-0 mx-4 lg:mx-8 top-6 lg:top-8 px-3  py-1 text-sm shadow-md border border-white rounded-[10px] ">
-                  {new Date(post._createdAt).toLocaleDateString("en-US", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </span>
-
-                <section className="absolute w-full px-4 lg:px-8 pb-3 lg:pb-5 gap-5 flex flex-col items-start  bottom-0 z-20 text-white ">
+                <section className="absolute w-full px-4 lg:px-8 pb-3 lg:pb-5 gap-2 lg:gap-4 flex flex-col items-start  bottom-0 z-20 text-white ">
                   <h1
                     style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.5)" }}
-                    className="text-3xl font-heading lg:text-5xl max-w-[1000px] leading-[1.1] w-full text-start  font-semibold hyphens-auto"
+                    className="text-3xl font-heading lg:text-5xl max-w-[1000px] mb-2 lg:mb-0 lg:leading-[60px] w-full text-start  font-semibold hyphens-auto"
                   >
                     {post.title}
                   </h1>
 
-                  <p className="text-lg font-heading">{post.description}</p>
+                  <p className="text-base text-[#FCFCFC] font-normal lg:text-xl lg:leading-[30px]  w-full max-w-[1000px] font-heading">
+                    {post.description}
+                  </p>
 
-                  <div className="flex flex-col lg:flex-row justify-between gap-5 items-start lg:items-center w-full">
-                    <div className="flex items-center gap-4 ">
+                  <div className="flex mt-8  justify-between gap-5 items-start lg:items-center w-full">
+                    <div className="flex items-center font-heading gap-2">
+                      <Image
+                        className="rounded-full h-10 lg:h-12 w-10 lg:w-12 object-cover"
+                        src={urlFor(post.author.image).url()}
+                        alt={`Photo of ${post.author.name}`}
+                        height={48}
+                        width={48}
+                      />
+                      <div className="flex flex-col text-sm lg:text-base ">
+                        <span className="font-semibold">
+                          {post.author.name}
+                        </span>
+                        <span className=" ">
+                          {new Date(post._createdAt).toLocaleDateString(
+                            "en-US",
+                            {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            },
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                    {/* <div className="flex items-center gap-2 ">
                       {post.categories.map((category) => (
                         <span
                           key={category._id}
-                          className="text-center px-3  py-1 text-sm shadow-md border border-white rounded-[10px] "
+                          className="text-center px-3  py-1 text-sm shadow-md border border-white rounded-[8px] "
                         >
                           {category.title}
                         </span>
                       ))}
-                    </div>
-
-                    <SharePost />
+                    </div> */}
                   </div>
                   <div className="flex flex-col text-sm lg:text-lg font-semibold items-center mb-2 justify-center">
                     {/* <div className="flex flex-row items-center justify-between space-x-5">
@@ -174,19 +186,28 @@ const page = async ({ params: { slug } }: Props) => {
                 </section>
               </div>
             </section>
-            <section className="mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-8  w-full ">
+            <section className="lg:mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-10  w-full ">
               <article className="flex-[7] max-w-[800px] font-medium  lg:space-y-0">
                 <PortableText
                   value={post.body}
                   components={RichTextComponent}
                 />
+                <div className="flex flex-col gap-2 pt-16">
+                  <h2 className="font-semibold font-heading text-base text-[#60707A] ">
+                    Share
+                  </h2>
+                  <SharePost />
+                </div>
               </article>
-              <aside className="flex-[3] max-w-[350px] flex flex-col-reverse lg:flex-col  w-full ">
-                <nav className="hidden lg:block" aria-label="Table of contents">
+              <aside className="flex-[3] max-w-[300px] flex flex-col-reverse lg:flex-col  w-full ">
+                <nav
+                  className="hidden lg:block sticky top-5"
+                  aria-label="Table of contents"
+                >
                   <ul className="space-y-4 max-w-[300px]  w-full ">
                     {headings.map((h) => (
                       <li
-                        className="font-bold  font-heading cursor-pointer text-lg"
+                        className="font-medium  font-body cursor-pointer text-lg"
                         key={h._key}
                       >
                         <a href={`#${slugify(h.children[0].text)}`}>
@@ -196,29 +217,6 @@ const page = async ({ params: { slug } }: Props) => {
                     ))}
                   </ul>
                 </nav>
-
-                <hr className="my-7 hidden lg:inline" />
-
-                <div className=" flex flex-col gap-3 ">
-                  <span className="font-semibold">Written by</span>
-
-                  <div className="flex items-center font-heading gap-2">
-                    <Image
-                      className="rounded-full h-12 w-12 object-cover"
-                      src={urlFor(post.author.image).url()}
-                      alt={`Photo of ${post.author.name}`}
-                      height={50}
-                      width={50}
-                    />
-                    <div className="flex flex-col ">
-                      <span className="font-semibold">{post.author.name}</span>
-                      <span className="text-gray-500 font-semibold">
-                        Frontend Engineer
-                      </span>
-                    </div>
-                  </div>
-                  <hr className="my-4 lg:my-7" />
-                </div>
               </aside>
             </section>
           </>

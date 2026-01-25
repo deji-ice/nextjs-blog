@@ -11,7 +11,7 @@ const BlogList = ({ posts }: Props) => {
   // Sort the posts by the _createdAt field in descending order
   const sortedPosts = posts.sort(
     (a, b) =>
-      new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime()
+      new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime(),
   );
 
   return (
@@ -32,7 +32,7 @@ const BlogList = ({ posts }: Props) => {
           <div className={`group cursor-pointer flex flex-col w-full `}>
             <div
               className={`relative w-full h-60 ${
-                index === 0 ? " lg:h-96" : " md:h-48 lg:h-60"
+                index === 0 ? " lg:h-[30rem]" : " md:h-48 lg:h-60"
               }  drop-shadow-xl transition-transform duration-200 ease-out`}
             >
               <Image
@@ -58,7 +58,9 @@ const BlogList = ({ posts }: Props) => {
                   >
                     {post.title}
                   </p>
-                  <span className={`mt-2 font-bold ${index === 0 ? "hidden" : "block"}`}>
+                  <span
+                    className={`mt-2 font-bold ${index === 0 ? "hidden" : "block"}`}
+                  >
                     {/* @ts-ignore */}
                     <FaArrowUpRightFromSquare
                       className={`h-5 w-5  md:h-4 md:w-4`}
@@ -168,7 +170,9 @@ const BlogList = ({ posts }: Props) => {
                     </span>
 
                     <div className={`flex flex-col`}>
-                      <span className={`${index === 0 ? "md:hidden text-sm" : "text-sm"}`}>
+                      <span
+                        className={`${index === 0 ? "md:hidden text-sm" : "text-sm"}`}
+                      >
                         {post.author.name}
                       </span>
                       <span
