@@ -1,10 +1,14 @@
-"use client";
-
-import { NextStudio } from "next-sanity/studio";
-
+import NextDynamic from "next/dynamic";
 import config from "../../../../sanity.config";
 
+// This is the key: it tells Next.js NOT to run Sanity on the server
+const Studio = NextDynamic(
+  () => import("next-sanity/studio").then((mod) => mod.NextStudio),
+  { ssr: false },
+);
+
+export const dynamic = "force-dynamic";
+
 export default function StudioPage() {
-  //  Supports the same props as `import {Studio} from 'sanity'`, `config` is required
-  return <NextStudio config={config} />;
+  return <Studio config={config} />;
 }
