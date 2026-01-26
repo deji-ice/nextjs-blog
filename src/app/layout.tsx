@@ -71,7 +71,7 @@ export const metadata = {
     title: "The Code Chronicles",
     description: "Explore the latest in tech and development.",
     images: ["/LOGO.png"],
-    creator: "@yourhandle",
+    creator: "@dejixice",
   },
 };
 

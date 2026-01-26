@@ -64,9 +64,16 @@ const Search = ({
         // Improved GROQ query with better text matching and ranking
         const query = groq`*[_type == "post" && (
   title match $searchTerm ||
-  description match $searchTerm ||
-  body[].children[].text match $searchTerm
-)] | order(_createdAt desc) [0...10] {
+  pt::text(body) match $searchTerm ||
+  description match $searchTerm
+)] | order(
+  select(
+    title match $searchTerm => 0,
+    description match $searchTerm => 1,
+    2
+  ),
+  _createdAt desc
+) [0...10] {
   _id, title, slug, description, _createdAt
 }`;
 
