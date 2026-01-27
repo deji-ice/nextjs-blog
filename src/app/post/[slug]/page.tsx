@@ -48,7 +48,7 @@ export default async function PostPage({ params }: Props) {
   if (!post) {
     return <div>Post not found</div>;
   }
-  console.log("Post data:", post);
+
   return (
     <main id="main-content" className="relative w-full lg:px-4 lg:mt-5">
       <section className=" relative pb-28  flex flex-col items-center  text-slate-950">
