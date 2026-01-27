@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import LenisScrollProvider from "@/components/LenisProvider";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -84,7 +85,9 @@ export default function RootLayout({
     <html lang="en" className={`${lato.variable} ${cabinetGrotesk.variable}`}>
       <body className="antialiased font-lato">
         <Header />
-        <main className="mx-auto max-w-[1400px]">{children}</main>
+          <LenisScrollProvider>
+          <main className="mx-auto max-w-[1400px]">{children}</main>
+        </LenisScrollProvider>
         <Footer />
       </body>
     </html>

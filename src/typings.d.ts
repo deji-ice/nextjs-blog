@@ -6,6 +6,11 @@ type Base = {
     _type: string;
 };
 
+interface Seo {
+    metaTitle: string;
+    metaDescription: string;
+}
+
 interface Post extends Base {
     author: Author;
     title: string;
@@ -13,6 +18,7 @@ interface Post extends Base {
     categories: Category[];
     mainImage: any;
     description: string;
+    seo: Seo;
     slug: Slug;
     _createdAt: string;
 }

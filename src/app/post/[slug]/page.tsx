@@ -4,11 +4,9 @@ import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import RelatedPosts from "@/components/RelatedPosts";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import SharePost from "@/components/SharePost";
-import { slugify } from "@/lib";
+import { slugify, calculateReadingTime } from "@/lib";
 import RichTextComponent from "@/components/RichTextComponent";
 
 type Props = {
@@ -29,9 +27,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: post.title,
-    description: post.description,
+    // Use SEO metaTitle if available, otherwise use post title
+    title: post.seo?.metaTitle || post.title,
+
+    // Use SEO metaDescription if available, otherwise use description
+    description: post.seo?.metaDescription || post.description,
+
     openGraph: {
+      title: post.seo?.metaTitle || post.title,
+      description: post.seo?.metaDescription || post.description,
+      images: [urlForImage(post.mainImage).url()],
+    },
+
+    twitter: {
+      title: post.seo?.metaTitle || post.title,
+      description: post.seo?.metaDescription || post.description,
       images: [urlForImage(post.mainImage).url()],
     },
   };
@@ -48,7 +58,7 @@ export default async function PostPage({ params }: Props) {
   if (!post) {
     return <div>Post not found</div>;
   }
-  console.log("Post data:", post);
+
   return (
     <main id="main-content" className="relative w-full lg:px-4 lg:mt-5">
       <section className=" relative pb-28  flex flex-col items-center  text-slate-950">
@@ -106,6 +116,8 @@ export default async function PostPage({ params }: Props) {
                               year: "numeric",
                             },
                           )}
+                          {" • "}
+                          {calculateReadingTime(post.body)} min read
                         </span>
                       </div>
                     </div>
@@ -113,7 +125,7 @@ export default async function PostPage({ params }: Props) {
                 </section>
               </div>
             </section>
-            <section className="lg:mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-10  w-full ">
+            <section className="lg:mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-20  w-full ">
               <article className="flex-[7] max-w-[800px] font-medium  lg:space-y-0">
                 <PortableText
                   value={post.body}
@@ -134,7 +146,7 @@ export default async function PostPage({ params }: Props) {
                   <ul className="space-y-4 max-w-[300px]  w-full ">
                     {headings.map((h) => (
                       <li
-                        className="font-semibold  font-body cursor-pointer text-lg"
+                        className="font-semibold  font-body cursor-pointer text-base"
                         key={h._key}
                       >
                         <a href={`#${slugify(h.children[0].text)}`}>
