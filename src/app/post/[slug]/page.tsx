@@ -4,8 +4,6 @@ import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import RelatedPosts from "@/components/RelatedPosts";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import SharePost from "@/components/SharePost";
 import { slugify } from "@/lib";
@@ -29,9 +27,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: post.title,
-    description: post.description,
+    // Use SEO metaTitle if available, otherwise use post title
+    title: post.seo?.metaTitle || post.title,
+
+    // Use SEO metaDescription if available, otherwise use description
+    description: post.seo?.metaDescription || post.description,
+
     openGraph: {
+      title: post.seo?.metaTitle || post.title,
+      description: post.seo?.metaDescription || post.description,
+      images: [urlForImage(post.mainImage).url()],
+    },
+
+    twitter: {
+      title: post.seo?.metaTitle || post.title,
+      description: post.seo?.metaDescription || post.description,
       images: [urlForImage(post.mainImage).url()],
     },
   };
