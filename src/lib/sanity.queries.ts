@@ -8,6 +8,7 @@ export const postsQuery = groq`
   description,
   mainImage,
   slug,
+  body,
   author -> {
     name,
     image
@@ -49,6 +50,7 @@ export const relatedPostsQuery = groq`
   slug,
   description,
   mainImage,
+  body,
   _createdAt,
   author->
 }

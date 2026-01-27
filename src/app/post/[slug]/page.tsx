@@ -6,7 +6,7 @@ import Image from "next/image";
 import RelatedPosts from "@/components/RelatedPosts";
 import { Metadata } from "next";
 import SharePost from "@/components/SharePost";
-import { slugify } from "@/lib";
+import { slugify, calculateReadingTime } from "@/lib";
 import RichTextComponent from "@/components/RichTextComponent";
 
 type Props = {
@@ -116,6 +116,8 @@ export default async function PostPage({ params }: Props) {
                               year: "numeric",
                             },
                           )}
+                          {" • "}
+                          {calculateReadingTime(post.body)} min read
                         </span>
                       </div>
                     </div>
@@ -123,7 +125,7 @@ export default async function PostPage({ params }: Props) {
                 </section>
               </div>
             </section>
-            <section className="lg:mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-10  w-full ">
+            <section className="lg:mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-20  w-full ">
               <article className="flex-[7] max-w-[800px] font-medium  lg:space-y-0">
                 <PortableText
                   value={post.body}
@@ -144,7 +146,7 @@ export default async function PostPage({ params }: Props) {
                   <ul className="space-y-4 max-w-[300px]  w-full ">
                     {headings.map((h) => (
                       <li
-                        className="font-semibold  font-body cursor-pointer text-lg"
+                        className="font-semibold  font-body cursor-pointer text-base"
                         key={h._key}
                       >
                         <a href={`#${slugify(h.children[0].text)}`}>

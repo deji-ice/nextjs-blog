@@ -3,6 +3,7 @@ import { relatedPostsQuery } from "@/lib/sanity.queries";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";
+import { calculateReadingTime } from "@/lib";
 
 type Props = {
   categories: Category[];
@@ -65,6 +66,8 @@ export default async function RelatedPosts({ categories, currentSlug }: Props) {
                     month: "long",
                     year: "numeric",
                   })}
+                  {" • "}
+                  {calculateReadingTime(post.body)} min read
                 </span>
               </div>
             </div>

@@ -2,6 +2,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { calculateReadingTime } from "@/lib";
 
 type Props = {
   posts: Post[];
@@ -121,6 +122,8 @@ const BlogList = ({ posts }: Props) => {
                         month: "long",
                         year: "numeric",
                       })}
+                      {" • "}
+                      {calculateReadingTime(post.body)} min read
                     </span>
                   </div>
                 </div>
