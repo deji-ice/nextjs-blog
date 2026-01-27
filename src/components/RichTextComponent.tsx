@@ -59,7 +59,7 @@ const RichTextComponent = {
     h2: ({ children }: any) => (
       <h2
         id={slugify(children[0])}
-        className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold lg:pt-10 pt-5 pb-2 leading-tight md:leading-[1.2]"
+        className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold  pb-2 leading-tight md:leading-[1.2]"
       >
         {children}
       </h2>
