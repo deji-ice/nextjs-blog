@@ -46,20 +46,20 @@ const BlogCard = ({
 
           {/* Featured Tag - Top Left */}
           <div className="absolute top-4 left-4 md:top-6 md:left-6">
-            <span className="inline-flex items-center px-3 py-1 rounded-xl text-xs md:text-sm font-semibold bg-white/90 backdrop-blur-sm text-gray-900">
+            <span className="inline-flex font-cabinet-grotesk uppercase tracking-widest items-center italic px-3 py-1 rounded-xl text-xs md:text-sm font-semibold bg-white/70 backdrop-blur-sm text-gray-900">
               Featured
             </span>
           </div>
 
           {/* Content - Bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
+          <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 lg:p-10">
             {/* Categories */}
             {post.categories && post.categories.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
                 {post.categories.map((category) => (
                   <span
                     key={category._id}
-                    className="inline-flex items-center px-3 py-1 rounded-xl text-xs md:text-sm font-medium bg-white/20 backdrop-blur-sm text-white border border-white/30"
+                    className="inline-flex items-center  px-3 py-1 rounded-xl text-xs md:text-sm font-medium bg-white/20 backdrop-blur-sm text-white border border-white/30"
                   >
                     {category.title}
                   </span>
@@ -80,24 +80,26 @@ const BlogCard = ({
             {/* Author & Meta */}
             <div className="flex items-center gap-3">
               <Image
-                className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover ring-2 ring-white/30"
+                className="w-8 h-8 md:w-12 md:h-12 rounded-full object-cover ring-2 ring-white/30"
                 src={urlForImage(post.author.image).url()}
                 alt={post.author.name}
                 width={48}
                 height={48}
               />
-              <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 text-sm md:text-base text-white/90">
-                <span className="font-semibold text-white">
+              <div className="flex items-center gap-1 md:gap-2 text-xs md:text-base text-white/90">
+                <span className="font-semibold text-white text-sm md:text-base whitespace-nowrap">
                   {post.author.name}
                 </span>
-                <span className="hidden md:inline">•</span>
-                <span>{formattedDate}</span>
+                <span className="">•</span>
+                <span className="whitespace-nowrap">{formattedDate}</span>
+
+              <span className="text-xs md:text-base text-white/90">•</span>
+              <div className="flex items-center gap-0.5 lg:gap-1.5 text-xs flex-nowrap md:text-base text-white/90">
+                <Clock className=" w-3 h-3 lg:w-4 lg:h-4" />
+                <span className="whitespace-nowrap">{readingTime} min read</span>
               </div>
-              <span className="text-sm md:text-base text-white/90">•</span>
-              <div className="flex items-center gap-1.5 text-sm md:text-base text-white/90">
-                <Clock className="w-4 h-4" />
-                <span>{readingTime} min read</span>
               </div>
+              
             </div>
           </div>
         </article>
@@ -122,7 +124,7 @@ const BlogCard = ({
 
         {/* Categories - pill style */}
         {post.categories && post.categories.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-3">
+          <div className="flex flex-wrap gap-2 mb-3 px-2">
             {post.categories.map((category) => (
               <span
                 key={category._id}
@@ -135,17 +137,17 @@ const BlogCard = ({
         )}
 
         {/* Title */}
-        <h2 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-gray-700 transition-colors duration-200">
+        <h2 className="text-xl px-2 font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-gray-700 transition-colors duration-200">
           {post.title}
         </h2>
 
         {/* Description */}
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+        <p className="text-gray-600 px-2 text-sm mb-4 line-clamp-2">
           {post.description}
         </p>
 
         {/* Author & Meta - responsive layout */}
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex px-2 items-center gap-2 md:gap-3">
           <Image
             className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover flex-shrink-0"
             src={urlForImage(post.author.image).url()}

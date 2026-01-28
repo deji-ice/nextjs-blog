@@ -97,12 +97,12 @@ export default async function PostPage({ params }: Props) {
   }
 
   return (
-    <main id="main-content" className="relative w-full lg:px-4 lg:mt-5">
+    <main id="main-content" className="relative w-full ">
       <section className=" relative pb-28  flex flex-col items-center  text-slate-950">
         {post && (
           <>
             <section className="space-y-2 w-full">
-              <div className="relative w-full h-[75vh] md:h-[80vh] lg:h-[85vh] overflow-hidden rounded-xl">
+              <div className="relative w-full h-[75vh] md:h-[80vh] lg:h-[85vh] overflow-hidden xl:rounded-b-sm">
                 {/* Background Image */}
                 {post && post.mainImage && (
                   <Image
@@ -120,7 +120,7 @@ export default async function PostPage({ params }: Props) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
                 {/* Content - Bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8 lg:p-10">
                   {/* Categories */}
                   {post.categories && post.categories.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -147,38 +147,43 @@ export default async function PostPage({ params }: Props) {
 
                   {/* Author & Meta */}
                   <div className="flex items-center gap-3">
-                    <Image
-                      className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover ring-2 ring-white/30"
-                      src={urlForImage(post.author.image).url()}
-                      alt={`Photo of ${post.author.name}`}
-                      width={48}
-                      height={48}
-                    />
-                    <div className="flex items-center gap-2 text-sm md:text-base text-white/90">
-                      <span className="font-semibold text-white">
-                        {post.author.name}
-                      </span>
-                      <span>•</span>
-                      <span>
-                        {new Date(post._createdAt).toLocaleDateString("en-US", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                        })}
-                      </span>
-                    </div>
-                    <span className="text-sm md:text-base text-white/90">
-                      •
-                    </span>
-                    <div className="flex items-center gap-1.5 text-sm md:text-base text-white/90">
-                      <Clock className="w-4 h-4" />
-                      <span>{calculateReadingTime(post.body)} min read</span>
+                    {/* Author & Meta */}
+                    <div className="flex items-center gap-3">
+                      <Image
+                        className="w-8 h-8 md:w-12 md:h-12 rounded-full object-cover ring-2 ring-white/30"
+                        src={urlForImage(post.author.image).url()}
+                        alt={post.author.name}
+                        width={48}
+                        height={48}
+                      />
+                      <div className="flex items-center gap-1 md:gap-2 text-xs md:text-base text-white/90">
+                        <span className="font-semibold text-white text-sm md:text-base whitespace-nowrap">
+                          {post.author.name}
+                        </span>
+                        <span className="">•</span>
+                        <span className="whitespace-nowrap">
+                          {new Date(post._createdAt).toLocaleDateString(
+                            "en-US",
+                            { month: "short", day: "numeric", year: "numeric" },
+                          )}
+                        </span>
+
+                        <span className="text-xs md:text-base text-white/90">
+                          •
+                        </span>
+                        <div className="flex items-center gap-0.5 lg:gap-1.5 text-xs flex-nowrap md:text-base text-white/90">
+                          <Clock className=" w-3 h-3 lg:w-4 lg:h-4" />
+                          <span className="whitespace-nowrap">
+                            {calculateReadingTime(post.body)} min read
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </section>
-            <section className="lg:mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-20  w-full ">
+            <section className="mt-5 lg:mt-14 px-4 md:px-8 lg:px-10 flex flex-col items-center md:items-start lg:flex-row justify-between gap-10 lg:gap-20  w-full ">
               <article className="flex-[7] max-w-[800px] font-medium  lg:space-y-0">
                 <PortableText
                   value={post.body}
@@ -191,12 +196,13 @@ export default async function PostPage({ params }: Props) {
                   <SharePost />
                 </div>
               </article>
-              <aside className="flex-[3] max-w-[300px] flex flex-col-reverse lg:flex-col w-full">
-                <div className="sticky top-[15vh] hidden lg:block">
-                  <div className="space-y-6">
-                    <TableOfContents headings={headings} />
-                    <Newsletter />
-                  </div>
+              <aside className="flex-[3] md:max-w-[500px] lg:max-w-[300px] flex flex-col w-full lg:sticky top-[15vh]">
+                <div className="space-y-6">
+                  <TableOfContents
+                    className="hidden lg:block"
+                    headings={headings}
+                  />
+                  <Newsletter />
                 </div>
               </aside>
             </section>

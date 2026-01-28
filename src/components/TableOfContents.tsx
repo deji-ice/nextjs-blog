@@ -11,9 +11,10 @@ type Heading = {
 
 type TableOfContentsProps = {
   headings: Heading[];
+  className?: string;
 };
 
-const TableOfContents = ({ headings }: TableOfContentsProps) => {
+const TableOfContents = ({ headings, className }: TableOfContentsProps) => {
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const TableOfContents = ({ headings }: TableOfContentsProps) => {
       {
         rootMargin: "-20% 0px -80% 0px",
         threshold: 0,
-      }
+      },
     );
 
     // Observe all headings
@@ -61,7 +62,7 @@ const TableOfContents = ({ headings }: TableOfContentsProps) => {
 
   return (
     <nav
-      className="bg-white rounded-xl border border-gray-200 p-6"
+      className={`${className} bg-white rounded-xl border border-gray-200 p-6 sticky top-[15vh]`}
       aria-label="Table of contents"
     >
       {/* Header */}
