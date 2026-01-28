@@ -46,7 +46,7 @@ const BlogCard = ({
 
           {/* Featured Tag - Top Left */}
           <div className="absolute top-4 left-4 md:top-6 md:left-6">
-            <span className="inline-flex font-cabinet-grotesk uppercase tracking-widest items-center italic px-3 py-1 rounded-xl text-xs md:text-sm font-semibold bg-white/70 backdrop-blur-sm text-gray-900">
+            <span className="inline-flex font-cabinet-grotesk uppercase tracking-widest items-center italic px-3 py-1 rounded-sm text-xs md:text-sm font-semibold bg-white backdrop-blur-sm text-gray-900">
               Featured
             </span>
           </div>
@@ -90,16 +90,17 @@ const BlogCard = ({
                 <span className="font-semibold text-white text-sm md:text-base whitespace-nowrap">
                   {post.author.name}
                 </span>
-                <span className="">•</span>
+                <span className="inline text-base">|</span>
                 <span className="whitespace-nowrap">{formattedDate}</span>
 
-              <span className="text-xs md:text-base text-white/90">•</span>
-              <div className="flex items-center gap-0.5 lg:gap-1.5 text-xs flex-nowrap md:text-base text-white/90">
-                <Clock className=" w-3 h-3 lg:w-4 lg:h-4" />
-                <span className="whitespace-nowrap">{readingTime} min read</span>
+                <span className="inline text-base">|</span>
+                <div className="flex items-center gap-0.5 lg:gap-1.5 text-xs flex-nowrap md:text-base text-white/90">
+                  <Clock className=" w-3 h-3 lg:w-4 lg:h-4" />
+                  <span className="whitespace-nowrap">
+                    {readingTime} min read
+                  </span>
+                </div>
               </div>
-              </div>
-              
             </div>
           </div>
         </article>
@@ -149,21 +150,21 @@ const BlogCard = ({
         {/* Author & Meta - responsive layout */}
         <div className="flex px-2 items-center gap-2 md:gap-3">
           <Image
-            className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover flex-shrink-0"
+            className="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover flex-shrink-0"
             src={urlForImage(post.author.image).url()}
             alt={post.author.name}
             width={40}
             height={40}
           />
-          <div className="flex flex-wrap items-center text-xs md:text-sm text-gray-600 gap-x-2">
-            <span className="font-medium text-gray-900">
+          <div className="flex flex-wrap items-center text-xs text-gray-600 gap-x-1">
+            <span className="font-medium font-sm text-gray-900">
               {post.author.name}
             </span>
-            <span className="inline">•</span>
+            <span className="inline text-base">|</span>
             <span className="w-auto">{formattedDate}</span>
-            <span className="inline">•</span>
+            <span className="inline text-base">|</span>
             <div className="flex items-center gap-1">
-              <Clock className="w-3 h-3 md:w-4 md:h-4" />
+              <Clock className="w-3 h-3" />
               <span>{readingTime} min. read</span>
             </div>
           </div>

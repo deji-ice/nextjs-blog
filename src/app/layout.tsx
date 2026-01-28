@@ -45,21 +45,33 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.thecodechronicles.tech/"),
   alternates: {
     canonical: "/",
-    languages: {
-      "en-US": "/en-US",
-    },
   },
+  keywords: [
+    "web development",
+    "programming",
+    "software engineering",
+    "tech blog",
+    "coding tutorials",
+    "developer insights",
+    "javascript",
+    "typescript",
+    "react",
+    "nextjs",
+  ],
   title: {
     template: "%s | The Code Chronicles",
-    default: "The Code Chronicles",
+    default: "The Code Chronicles - Fresh Takes on Tech That Matters",
   },
   description:
-    "Expand your mind and broaden your horizons with our captivating chronicles of curiosity",
+    "Fresh takes on tech that matters. We dig into frameworks worth learning, trends reshaping development, and the bugs that ruin your sleep. Real insights.",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://www.thecodechronicles.tech/",
     siteName: "The Code Chronicles",
+    title: "The Code Chronicles - Fresh Takes on Tech That Matters",
+    description:
+      "Fresh takes on tech that matters. We dig into frameworks worth learning, trends reshaping development, and the bugs that ruin your sleep.",
     images: [
       {
         url: "/LOGO.png",
@@ -71,10 +83,23 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Code Chronicles",
-    description: "Explore the latest in tech and development.",
+    title: "The Code Chronicles - Fresh Takes on Tech That Matters",
+    description:
+      "Fresh takes on tech that matters. We dig into frameworks worth learning, trends reshaping development, and the bugs that ruin your sleep.",
     images: ["/LOGO.png"],
     creator: "@dejixice",
+    site: "@dejixice",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

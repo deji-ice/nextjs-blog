@@ -22,7 +22,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl w-full mx-auto border border-gray-200 p-6 mb-6">
+    <div className="bg-white rounded-xl w-full mx-auto relative z-2 border border-gray-200 p-6 mb-6">
       <h2 className="font-bold text-lg text-gray-900 mb-2">
         Subscribe to the Newsletter
       </h2>

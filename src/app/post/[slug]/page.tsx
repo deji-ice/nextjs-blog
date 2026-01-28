@@ -11,6 +11,9 @@ import RichTextComponent from "@/components/RichTextComponent";
 import { Clock } from "lucide-react";
 import TableOfContents from "@/components/TableOfContents";
 import Newsletter from "@/components/Newsletter";
+import StructuredData from "@/components/StructuredData";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import ReadingProgress from "@/components/ReadingProgress";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -97,7 +100,23 @@ export default async function PostPage({ params }: Props) {
   }
 
   return (
-    <main id="main-content" className="relative w-full ">
+    <main id="main-content" className="relative w-full lg:px-0 lg:mt-1">
+      {/* Reading Progress Bar */}
+      <ReadingProgress />
+
+      {/* Structured Data for SEO */}
+      <StructuredData post={post} />
+
+      {/* Breadcrumbs */}
+      <div className="px-4 lg:px-8 py-2">
+        <Breadcrumbs
+          items={[
+            { label: "Blog", href: "/" },
+            { label: post.title, href: `/post/${post.slug.current}` },
+          ]}
+        />
+      </div>
+
       <section className=" relative pb-28  flex flex-col items-center  text-slate-950">
         {post && (
           <>
@@ -150,7 +169,7 @@ export default async function PostPage({ params }: Props) {
                     {/* Author & Meta */}
                     <div className="flex items-center gap-3">
                       <Image
-                        className="w-8 h-8 md:w-12 md:h-12 rounded-full object-cover ring-2 ring-white/30"
+                        className="w-8 h-8 md:w-11 md:h-11 rounded-full object-cover ring-2 ring-white/30"
                         src={urlForImage(post.author.image).url()}
                         alt={post.author.name}
                         width={48}
@@ -160,7 +179,7 @@ export default async function PostPage({ params }: Props) {
                         <span className="font-semibold text-white text-sm md:text-base whitespace-nowrap">
                           {post.author.name}
                         </span>
-                        <span className="">•</span>
+                        <span className="inline text-lg">|</span>
                         <span className="whitespace-nowrap">
                           {new Date(post._createdAt).toLocaleDateString(
                             "en-US",
@@ -168,9 +187,7 @@ export default async function PostPage({ params }: Props) {
                           )}
                         </span>
 
-                        <span className="text-xs md:text-base text-white/90">
-                          •
-                        </span>
+                        <span className="inline text-lg">|</span>
                         <div className="flex items-center gap-0.5 lg:gap-1.5 text-xs flex-nowrap md:text-base text-white/90">
                           <Clock className=" w-3 h-3 lg:w-4 lg:h-4" />
                           <span className="whitespace-nowrap">
