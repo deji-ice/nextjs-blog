@@ -8,6 +8,9 @@ import { Metadata } from "next";
 import SharePost from "@/components/SharePost";
 import { slugify, calculateReadingTime } from "@/lib";
 import RichTextComponent from "@/components/RichTextComponent";
+import { Clock } from "lucide-react";
+import TableOfContents from "@/components/TableOfContents"
+import Newsletter from "@/components/Newsletter";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -64,65 +67,79 @@ export default async function PostPage({ params }: Props) {
       <section className=" relative pb-28  flex flex-col items-center  text-slate-950">
         {post && (
           <>
-            <section className=" space-y-2 w-full">
-              <div className="relative min-h-56 flex w-full flex-col md:flex-row justify-center">
-                <div className="w-full h-full  ">
-                  {post && post.mainImage && (
-                    <Image
-                      className="object-cover w-full h-[75vh] lg:h-[90vh] max-h-[1000px] lg:rounded-[12px]  object-center "
-                      src={urlForImage(post.mainImage).url()}
-                      alt={
-                        post.mainImage.alt || `Cover image for ${post.title}`
-                      }
-                      height={500}
-                      width={1000}
-                      priority
-                      loading="eager"
-                    />
-                  )}
-                </div>
+            <section className="space-y-2 w-full">
+              <div className="relative w-full h-[75vh] md:h-[80vh] lg:h-[85vh] overflow-hidden rounded-xl">
+                {/* Background Image */}
+                {post && post.mainImage && (
+                  <Image
+                    className="object-cover w-full h-full"
+                    src={urlForImage(post.mainImage).url()}
+                    alt={post.mainImage.alt || `Cover image for ${post.title}`}
+                    fill
+                    priority
+                    loading="eager"
+                    sizes="100vw"
+                  />
+                )}
 
-                <section className="absolute w-full px-4 lg:px-8 pb-3 lg:pb-5 gap-2 lg:gap-4 flex flex-col items-start  bottom-0 z-20 text-white ">
-                  <h1
-                    style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.5)" }}
-                    className="text-3xl font-heading lg:text-5xl max-w-[1000px] mb-2 lg:mb-0 lg:leading-[60px] w-full text-start  font-semibold hyphens-auto"
-                  >
+                {/* Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                {/* Content - Bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
+                  {/* Categories */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {post.categories.map((category) => (
+                      <span
+                        key={category._id}
+                        className="inline-flex items-center px-3 py-1 rounded-xl text-xs md:text-sm font-medium bg-white/20 backdrop-blur-sm text-white border border-white/30"
+                      >
+                        {category.title}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Title */}
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 max-w-4xl">
                     {post.title}
                   </h1>
 
-                  <p className="text-base text-[#FCFCFC] font-normal lg:text-xl lg:leading-[30px]  w-full max-w-[1000px] font-heading">
+                  {/* Description */}
+                  <p className="text-base md:text-lg text-white/90 mb-4 md:mb-6 max-w-4xl">
                     {post.description}
                   </p>
 
-                  <div className="flex mt-8  justify-between gap-5 items-start lg:items-center w-full">
-                    <div className="flex items-center font-heading gap-2">
-                      <Image
-                        className="rounded-full h-10 lg:h-12 w-10 lg:w-12 object-cover"
-                        src={urlForImage(post.author.image).url()}
-                        alt={`Photo of ${post.author.name}`}
-                        height={48}
-                        width={48}
-                      />
-                      <div className="flex flex-col text-sm lg:text-base ">
-                        <span className="font-semibold">
-                          {post.author.name}
-                        </span>
-                        <span className=" ">
-                          {new Date(post._createdAt).toLocaleDateString(
-                            "en-US",
-                            {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            },
-                          )}
-                          {" • "}
-                          {calculateReadingTime(post.body)} min read
-                        </span>
-                      </div>
+                  {/* Author & Meta */}
+                  <div className="flex items-center gap-3">
+                    <Image
+                      className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover ring-2 ring-white/30"
+                      src={urlForImage(post.author.image).url()}
+                      alt={`Photo of ${post.author.name}`}
+                      width={48}
+                      height={48}
+                    />
+                    <div className="flex items-center gap-2 text-sm md:text-base text-white/90">
+                      <span className="font-semibold text-white">
+                        {post.author.name}
+                      </span>
+                      <span>•</span>
+                      <span>
+                        {new Date(post._createdAt).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </span>
+                    </div>
+                    <span className="text-sm md:text-base text-white/90">
+                      •
+                    </span>
+                    <div className="flex items-center gap-1.5 text-sm md:text-base text-white/90">
+                      <Clock className="w-4 h-4" />
+                      <span>{calculateReadingTime(post.body)} min read</span>
                     </div>
                   </div>
-                </section>
+                </div>
               </div>
             </section>
             <section className="lg:mt-14 px-4 lg:px-10 flex flex-col-reverse lg:flex-row justify-between gap-20  w-full ">
@@ -138,24 +155,13 @@ export default async function PostPage({ params }: Props) {
                   <SharePost />
                 </div>
               </article>
-              <aside className="flex-[3] max-w-[300px] flex flex-col-reverse lg:flex-col  w-full ">
-                <nav
-                  className="hidden lg:block sticky top-[15vh]"
-                  aria-label="Table of contents"
-                >
-                  <ul className="space-y-4 max-w-[300px]  w-full ">
-                    {headings.map((h) => (
-                      <li
-                        className="font-semibold  font-body cursor-pointer text-base"
-                        key={h._key}
-                      >
-                        <a href={`#${slugify(h.children[0].text)}`}>
-                          {h.children[0].text}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
+              <aside className="flex-[3] max-w-[300px] flex flex-col-reverse lg:flex-col w-full">
+                <div className="sticky top-[15vh] hidden lg:block">
+                  <div className="space-y-6">
+                    <TableOfContents headings={headings} />
+                    <Newsletter />
+                  </div>
+                </div>
               </aside>
             </section>
           </>
