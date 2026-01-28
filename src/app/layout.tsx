@@ -5,6 +5,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LenisScrollProvider from "@/components/LenisProvider";
+import { Analytics } from "@vercel/analytics/next"
 
 const lato = Lato({
   subsets: ["latin"],
@@ -83,6 +84,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${lato.variable} ${cabinetGrotesk.variable}`}>
+      <Analytics />
       <body className="antialiased font-lato">
         <Header />
           <LenisScrollProvider>
