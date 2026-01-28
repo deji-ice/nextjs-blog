@@ -4,6 +4,7 @@ export const postsQuery = groq`
 *[_type == "post"] {
   _id,
   _createdAt,
+  _updatedAt,
   title,
   description,
   mainImage,
@@ -26,6 +27,7 @@ export const postQuery = groq`
   title,
   slug,
   _createdAt,
+  _updatedAt,
   mainImage,
   body,
   description,
@@ -40,8 +42,8 @@ export const postQuery = groq`
 `;
 
 export const relatedPostsQuery = groq`
-*[_type == "post" && 
-  count((categories[]->slug.current)[@ in $categories]) > 0 && 
+*[_type == "post" &&
+  count((categories[]->slug.current)[@ in $categories]) > 0 &&
   slug.current != $currentSlug &&
   _createdAt < now()
 ] | order(_createdAt desc) [0...3] {
