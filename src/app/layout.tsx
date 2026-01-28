@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { Lato } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LenisScrollProvider from "@/components/LenisProvider";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -40,7 +41,7 @@ const cabinetGrotesk = localFont({
   display: "swap",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL("https://www.thecodechronicles.tech/"),
   alternates: {
     canonical: "/",
@@ -85,9 +86,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${lato.variable} ${cabinetGrotesk.variable}`}>
       <Analytics />
+
+      {process.env.NEXT_PUBLIC_GA_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      )}
       <body className="antialiased font-lato">
         <Header />
-          <LenisScrollProvider>
+        <LenisScrollProvider>
           <main className="mx-auto max-w-[1400px]">{children}</main>
         </LenisScrollProvider>
         <Footer />
