@@ -9,7 +9,7 @@ import SharePost from "@/components/SharePost";
 import { slugify, calculateReadingTime } from "@/lib";
 import RichTextComponent from "@/components/RichTextComponent";
 import { Clock } from "lucide-react";
-import TableOfContents from "@/components/TableOfContents"
+import TableOfContents from "@/components/TableOfContents";
 import Newsletter from "@/components/Newsletter";
 
 type Props = {
@@ -29,6 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Post Not Found" };
   }
 
+  const imageUrl = urlForImage(post.mainImage).width(1200).height(630).url();
+  const url = `https://www.thecodechronicles.tech/post/${post.slug.current}`;
+
   return {
     // Use SEO metaTitle if available, otherwise use post title
     title: post.seo?.metaTitle || post.title,
@@ -36,16 +39,47 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Use SEO metaDescription if available, otherwise use description
     description: post.seo?.metaDescription || post.description,
 
+    // Additional metadata
+    authors: [{ name: post.author.name }],
+    keywords: post.categories?.map((cat) => cat.title).join(", "),
+
+    // OpenGraph (Facebook, LinkedIn, etc.)
     openGraph: {
+      type: "article",
+      url: url,
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.description,
-      images: [urlForImage(post.mainImage).url()],
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.mainImage.alt || post.title,
+        },
+      ],
+      siteName: "The Code Chronicles",
+      locale: "en_US",
+      publishedTime: post._createdAt,
+      modifiedTime: post._updatedAt,
+      authors: [post.author.name],
+      tags: post.categories?.map((cat) => cat.title),
     },
 
+    // Twitter
     twitter: {
+      card: "summary_large_image",
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.description,
-      images: [urlForImage(post.mainImage).url()],
+      images: [imageUrl],
+      creator: "@dejixice",
+      site: "@dejixice",
+    },
+
+    // Additional meta tags
+    other: {
+      "article:published_time": post._createdAt,
+      "article:modified_time": post._updatedAt,
+      "article:author": post.author.name,
     },
   };
 }
@@ -88,16 +122,18 @@ export default async function PostPage({ params }: Props) {
                 {/* Content - Bottom */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
                   {/* Categories */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.categories.map((category) => (
-                      <span
-                        key={category._id}
-                        className="inline-flex items-center px-3 py-1 rounded-xl text-xs md:text-sm font-medium bg-white/20 backdrop-blur-sm text-white border border-white/30"
-                      >
-                        {category.title}
-                      </span>
-                    ))}
-                  </div>
+                  {post.categories && post.categories.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.categories.map((category) => (
+                        <span
+                          key={category._id}
+                          className="inline-flex items-center px-3 py-1 rounded-xl text-xs md:text-sm font-medium bg-white/20 backdrop-blur-sm text-white border border-white/30"
+                        >
+                          {category.title}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Title */}
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 max-w-4xl">
