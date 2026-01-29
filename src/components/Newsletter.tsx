@@ -64,7 +64,7 @@ const Newsletter = () => {
         <span className="underline cursor-pointer hover:text-gray-700">
           privacy
         </span>
-        , we won't spam
+        , we won&apos;t spam you.
       </p>
     </div>
   );

@@ -16,7 +16,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "weekly" as const,
     priority: 0.8,
     images: post.mainImage
-      ? [urlForImage(post.mainImage).width(1200).height(630).url()]
+      ? [
+          urlForImage(post.mainImage)
+            .width(1200)
+            .height(630)
+            .url()
+            .replace(/&/g, "&amp;"),
+        ]
       : undefined,
   }));
 
