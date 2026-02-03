@@ -1,4 +1,5 @@
 import { urlForImage } from "@/sanity/lib/image";
+import { calculateReadingTime } from "@/lib";
 
 type StructuredDataProps = {
   post: Post;
@@ -11,6 +12,7 @@ export default function StructuredData({
 }: StructuredDataProps) {
   const imageUrl = urlForImage(post.mainImage).width(1200).height(630).url();
   const baseUrl = "https://www.thecodechronicles.tech";
+  const readingTime = calculateReadingTime(post.body);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -52,6 +54,29 @@ export default function StructuredData({
     keywords: post.categories?.map((cat) => cat.title).join(", "),
     articleSection: post.categories?.[0]?.title || "Technology",
     inLanguage: "en-US",
+    // Enhanced for 2025 SEO
+    wordCount: post.body?.reduce(
+      (
+        count: number,
+        block: { _type?: string; children?: Array<{ text?: string }> },
+      ) => {
+        if (block._type === "block" && block.children) {
+          return (
+            count +
+            block.children.reduce(
+              (sum: number, child: { text?: string }) =>
+                sum + (child.text?.split(/\s+/).length || 0),
+              0,
+            )
+          );
+        }
+        return count;
+      },
+      0,
+    ),
+    timeRequired: `PT${readingTime}M`,
+    // Helps with E-E-A-T signals
+    backstory: post.description,
   };
 
   // Add breadcrumb structured data
