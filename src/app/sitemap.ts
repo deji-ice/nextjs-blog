@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { client } from "@/sanity/lib/client";
-import { postSlugsQuery, postsQuery } from "@/lib/sanity.queries";
+import { postsQuery } from "@/lib/sanity.queries";
 import { urlForImage } from "@/sanity/lib/image";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -12,17 +12,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Generate post URLs with image metadata
   const postUrls = posts.map((post) => ({
     url: `${baseUrl}/post/${post.slug.current}`,
-    lastModified: post._updatedAt || post._createdAt,
+    lastModified: new Date(post._updatedAt || post._createdAt),
     changeFrequency: "weekly" as const,
     priority: 0.8,
     images: post.mainImage
       ? [
-          urlForImage(post.mainImage)
-            .width(1200)
-            .height(630)
-            .url()
-            .replace(/&/g, "&amp;"),
-        ]
+        urlForImage(post.mainImage)
+          .width(1200)
+          .height(630)
+          .url(),
+      ]
       : undefined,
   }));
 
@@ -30,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     {
       url: baseUrl,
-      lastModified: new Date().toISOString(),
+      lastModified: new Date(),
       changeFrequency: "daily" as const,
       priority: 1,
     },
