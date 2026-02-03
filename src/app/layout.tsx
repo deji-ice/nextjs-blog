@@ -57,6 +57,11 @@ export const metadata: Metadata = {
     "typescript",
     "react",
     "nextjs",
+    "frontend development",
+    "blog",
+    "the code chronicles",
+    "code chronicles",
+    "ayodeji atanda",
   ],
   title: {
     template: "%s | The Code Chronicles",

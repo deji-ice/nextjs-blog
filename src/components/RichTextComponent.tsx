@@ -51,10 +51,14 @@ const RichTextComponent = {
   },
 
   block: {
+    // Convert H1 to H2 to avoid multiple H1s (page title is the only H1)
     h1: ({ children }: any) => (
-      <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold py-4 leading-tight md:leading-[1.15]">
+      <h2
+        id={slugify(children[0])}
+        className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold py-4 leading-tight md:leading-[1.15]"
+      >
         {children}
-      </h1>
+      </h2>
     ),
     h2: ({ children }: any) => (
       <h2

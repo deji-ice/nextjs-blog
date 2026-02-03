@@ -6,7 +6,7 @@ import Image from "next/image";
 import RelatedPosts from "@/components/RelatedPosts";
 import { Metadata } from "next";
 import SharePost from "@/components/SharePost";
-import { slugify, calculateReadingTime } from "@/lib";
+import { calculateReadingTime } from "@/lib";
 import RichTextComponent from "@/components/RichTextComponent";
 import { Clock } from "lucide-react";
 import TableOfContents from "@/components/TableOfContents";
@@ -66,6 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       modifiedTime: post._updatedAt,
       authors: [post.author.name],
       tags: post.categories?.map((cat) => cat.title),
+      section: post.categories?.[0]?.title || "Technology",
     },
 
     // Twitter
@@ -101,6 +102,14 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <main id="main-content" className="relative w-full lg:px-0 lg:mt-1">
+      {/* Skip to Content Link for Accessibility */}
+      <a
+        href="#article-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-md focus:shadow-lg"
+      >
+        Skip to content
+      </a>
+
       {/* Reading Progress Bar */}
       <ReadingProgress />
 
@@ -130,6 +139,7 @@ export default async function PostPage({ params }: Props) {
                     alt={post.mainImage.alt || `Cover image for ${post.title}`}
                     fill
                     priority
+                    fetchPriority="high"
                     loading="eager"
                     sizes="100vw"
                   />
@@ -201,7 +211,10 @@ export default async function PostPage({ params }: Props) {
               </div>
             </section>
             <section className="mt-5 lg:mt-14 px-4 md:px-8 lg:px-10 flex flex-col items-center md:items-start lg:flex-row justify-between gap-10 lg:gap-20  w-full ">
-              <article className="flex-[7] max-w-[800px] font-medium  lg:space-y-0">
+              <article
+                id="article-content"
+                className="flex-[7] max-w-[800px] font-medium  lg:space-y-0"
+              >
                 <PortableText
                   value={post.body}
                   components={RichTextComponent}

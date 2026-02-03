@@ -31,6 +31,7 @@ export const postQuery = groq`
   mainImage,
   body,
   description,
+  seo,
   author->,
   categories[]->{
   _id,
